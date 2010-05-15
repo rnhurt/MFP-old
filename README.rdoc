@@ -33,7 +33,7 @@ it should run on any system that runs Rails.
 7. Fire up your web browser and point it to http://localhost:3000
 
 == Building Documentation
-Gradesheet is documented using the standard, built-in RDoc system.  To build 
+M.F.P. is documented using the standard, built-in RDoc system.  To build 
 the documentation with the just run the command:
   rake doc:app
 However, to build better looking documentation you might want to use this command: 
