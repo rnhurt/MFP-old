@@ -1,0 +1,12 @@
+<div class="footer">
+  <% cache 'layout_footer' do %>
+    <div class='span-24 last' id='footer'>
+      &copy; 2009 - <%= Time.now.year %>  <a href='http://kangaroobox.com'>KangarooBox</a>, LLC.  All rights reserved.
+    </div>
+  </div>
+
+  <%#= render :file => 'layouts/analytics.inc' if File.exist?(RAILS_ROOT + '/app/views/layouts/analytics.inc') -%>
+<% end %>
+
+<%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min.js',
+  'jquery.infieldlabel.min', 'application', :cache => '../system/all' -%>

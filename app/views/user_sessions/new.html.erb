@@ -1,0 +1,19 @@
+<div style="float:left;text-align:center;">
+  <h1>Dingo</h1>
+  <img alt="logo" src="/images/logo.jpeg"/>
+  <h2>Law Enforcement RMS</h2>
+</div>
+
+<div id="center_form" >
+  <% form_for @user_session do |f| %>
+    <%= f.error_messages %>
+
+    <%= f.label :login %>
+    <%= f.text_field :login, :class => "focus clearfix" %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.submit 'Login', :id => 'send' %>
+  <% end %>
+</div>

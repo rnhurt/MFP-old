@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
+    <meta name="robots" content="index,follow" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title>Dingo<%= " - " + controller.controller_name.humanize -%></title>
+
+    <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.1.custom', 'main', :cache => '../system/all' -%>
+
+    <%= @content_for_page_header -%>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      
+      <div class="content">
+        <%= yield -%>
+      </div>
+
+      <%= render :partial => "layouts/footer" %>
+    </div>
+  </body>
+</html>

@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <meta charset='UTF-8'>
-    <title><%#= StaticData.site_name -%><%= controller.controller_name.humanize -%></title>
+    <meta http-equiv='content-type' content='text/html;charset=UTF-8' />
+    <meta name="robots" content="index,follow" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <title>Dingo<%= " - " + controller.controller_name.humanize -%></title>
 
-    <%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.1.custom', 'main', :cache => '../system/all' -%>
-    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min.js', 'application', :cache => '../system/all' -%>
+    <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.1.custom',
+      'main', :cache => '../system/all' -%>
 
     <%= @content_for_page_header -%>
   </head>
 
   <body>
-    <div id='content' class='container'>
+    <div class='container'>
       <div id='header'>
-        <% cache 'layout_header' do %>
+        <h1 style="float:left;">Dingo - Law Enforcement RMS</h1>
 
-        <% end %>
+        <div id="user_nav" class="ui-widget ui-corner-all">
+          <% if !current_user %>
+            <span><%= link_to " log in ", login_path %></span>
+          <% else %>
+            <span><%= current_user.full_name %></span> |
+            <span><%= link_to 'My Account', edit_account_path() %></span> |
+            <span><%= link_to "log out", logout_path, :method => :delete %></span>
+          <% end %>
+        </div>
       </div>
-
       <div id='flash'><%= show_flash %></div>
 
       <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>
@@ -31,14 +40,7 @@
 
       </div>
 
-
-      <% cache 'layout_footer' do %>
-        <div class='span-24 last' id='footer'>
-          &copy; 2009 - <%= Time.now.year %>  <a href='http://kangaroobox.com'>KangarooBox</a>, LLC.  All rights reserved.
-        </div>
-      </div>
-
-      <%= render :file => 'layouts/analytics.inc' if File.exist?(RAILS_ROOT + '/app/views/layouts/analytics.inc') -%>
-    <% end %>
+      <%= render :partial => "layouts/footer" %>
+    </div>
   </body>
 </html>
