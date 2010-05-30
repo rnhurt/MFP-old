@@ -16,7 +16,7 @@
 
   <%= f.label '' %>
   <%= f.text_field :city, :size => 35, :title => 'city' %>
-  <%= f.select :state, @states.collect { |m| [m.name, m.id] }, :size => 2 %>
+  <%#= f.select :state, @states.collect { |m| [m.name, m.id] }, :size => 2 %>
   <%= f.text_field :postal_code, :size => 7, :title => 'zip code' %>
 
 <% end %>

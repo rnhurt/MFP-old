@@ -11,6 +11,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :vehicles
   map.resources :reports
 
-  # By default, we want the user to see the "people" page.
-  map.root :controller => 'people', :action => 'redirect'
+  # By default, we want the user to see this page.
+  map.root :controller => 'incidents', :action => 'redirect'
 end

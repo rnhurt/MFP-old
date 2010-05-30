@@ -5,7 +5,7 @@ module ApplicationHelper
 	def menu_builder(page_id)
 		content = ''
 
-    ['people', 'incidents', 'vehicles', 'reports'].each do |page|
+    ['incidents', 'people', 'vehicles', 'reports'].each do |page|
       content << if page_id == page
         content_tag( :li, link_to(page.humanize, page , :class => 'ui-state-default ui-corner-top ui-tabs-selected ui-state-active'))
       else

@@ -6,8 +6,14 @@ div.container { background-color:transparent; margin:0px auto; padding:0; width:
 
 #center_form {margin:auto; width:326px;}
 
-form label {display:inline-block; text-align:right; width:100px;}
-input.blur {color:#999999;}
+form label {display:inline-block; text-align:right; width:100px; vertical-align: top; padding-right: 10px}
+form p { display:inline-block}
+input.blur, textarea.blur {color:#999999;}
+table {
+/*  display:inline-block; */
+  width: 760px;
+/*  border:1px solid;*/
+}
 
 .fieldWithErrors {
   padding: 2px;

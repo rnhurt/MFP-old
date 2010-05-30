@@ -1,0 +1,130 @@
+<% current_date = DateTime.now %>
+
+<% form_for :incident do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.label :number, 'Incident #' %>
+  <%= f.text_field :number, :title => 'incident-1001' %>
+  <%= f.submit 'Create New' if !@incident || @incident.new_record? %>
+
+  <hr />
+
+  <%= f.label :category %>
+  <%= f.select :category, IncidentCategory.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
+  <%= f.label :arrived_at, 'Times' %>
+  <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
+  <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>
+  <%= f.text_field :cleared_at, :size => 12, :class => 'timepicker', :title => 'cleared at' %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label>Persons</label>
+  <table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Mugshot</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Bob</td>
+      <td>Smith</td>
+      <td>123 W. Main St.  Louisville, KY  40222</td>
+      <td><img src=".." height="60" width="60"> </td>
+    </tr>
+    <tr>
+      <td>Steve</td>
+      <td>Smith</td>
+      <td>456 S. South St.  Louisville, KY  40222</td>
+      <td><img src=".." height="60" width="60"> </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label>Officers</label>
+  <table>
+    <thead>
+      <tr>
+        <th>Badge #</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>123</td>
+      <td>Dick</td>
+      <td>Trickle</td>
+    </tr>
+    <tr>
+      <td>ZXY</td>
+      <td>Richard</td>
+      <td>Jones</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label>Vehicles</label>
+  <table>
+    <thead>
+      <tr>
+        <th>VIN</th>
+        <th>Year</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>License</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>ASFASLWERWER2342</td>
+      <td>1983</td>
+      <td>VW</td>
+      <td>Rabbit GTI</td>
+      <td>Black</td>
+      <td>123-xyz</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label>Property</label>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Gun</td>
+      <td>S&W 9mm</td>
+    </tr>
+    <tr>
+      <td>Drugs</td>
+      <td>5oz. of pot in a little plastic baggie + 2 rolled joints and 1 partially smoked roach.</td>
+    </tr>
+    </tbody>
+  </table>
+
+    <div class="clearfix">&nbsp;</div>
+
+    <%= f.label :narrative %>
+    <%= f.text_area :narrative, :rows => 10, :cols => 80, :title => 'Describe the incident here...' %>
+
+    <div class="clearfix">&nbsp;</div>
+
+    <%= f.submit 'Save' %>
+  <% end %>
+
+

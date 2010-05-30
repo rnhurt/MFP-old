@@ -1,0 +1,19 @@
+call:
+  name: Call
+  description: Call for service
+  active: true
+
+theft:
+  name: Theft
+  description: Someone stole something from someone else
+  active: true
+
+robbery:
+  name: Robbery (inactive)
+  description: This item is old and not used anymore
+  active: false
+  
+assult:
+  name: Assult
+  description:
+  active: true
