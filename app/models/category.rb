@@ -1,4 +1,4 @@
-class IncidentCategory < ActiveRecord::Base
+class Category < ActiveRecord::Base
   belongs_to  :incident
 
   named_scope :active, :conditions => {:active => true}

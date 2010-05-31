@@ -7,7 +7,7 @@ class CreateLocations < ActiveRecord::Migration
       t.string  :city
       t.string  :state
       t.string  :postal_code
-      t.string  :crosstreet
+      t.string  :crossstreet
       t.decimal :latitude,  :precision => 9, :scale => 6
       t.decimal :longitude, :precision => 9, :scale => 6
 

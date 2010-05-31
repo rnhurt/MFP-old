@@ -9,11 +9,12 @@ div.container { background-color:transparent; margin:0px auto; padding:0; width:
 form label {display:inline-block; text-align:right; width:100px; vertical-align: top; padding-right: 10px}
 form p { display:inline-block}
 input.blur, textarea.blur {color:#999999;}
-table {
-/*  display:inline-block; */
-  width: 760px;
-/*  border:1px solid;*/
-}
+
+.dataTables_wrapper { display:inline-block; position: relative; clear: both; width: 760px;}
+.ui-icon {float:right;}
+
+table { width:100%; }
+
 
 .fieldWithErrors {
   padding: 2px;

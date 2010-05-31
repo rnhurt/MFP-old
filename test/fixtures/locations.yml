@@ -1,7 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+l1:
+  street_number: 2803
+  street_name: W. Main
+  city: Los Angles
+  state: CA
+  postal_code: 90210
+  crossstreet: Hollywood
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+l2:
+  street_number: 1231
+  street_name: South Central Ave.
+  city: Omaha
+  state: ND
+  postal_code: 70222
+  crossstreet: Vine

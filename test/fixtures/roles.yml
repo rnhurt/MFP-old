@@ -1,0 +1,19 @@
+vic:
+  name: Victim
+  category: person
+
+sus:
+  name: Suspect
+  category: person
+
+wit:
+  name: Witness
+  category: person
+
+sto:
+  name: Stolen
+  category: property
+
+rec:
+  name: Recovered
+  category: property

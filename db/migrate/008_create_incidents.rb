@@ -2,7 +2,7 @@ class CreateIncidents < ActiveRecord::Migration
   def self.up
     create_table :incidents do |t|
       t.string    :number,      :null => false
-      t.string    :category_id
+      t.integer   :incident_cat_id
       t.integer   :location_id
       t.date      :date
       t.timestamp :dispatched_at
@@ -15,18 +15,9 @@ class CreateIncidents < ActiveRecord::Migration
 
       t.timestamps
     end
-
-    create_table  :incident_categories do |t|
-      t.string  :name
-      t.string  :description
-
-      t.boolean :active
-
-      t.timestamps
-    end
   end
 
   def self.down
-    drop_table :incidents, :incident_categories
+    drop_table :incidents
   end
 end

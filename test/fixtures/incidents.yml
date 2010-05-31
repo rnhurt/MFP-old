@@ -1,7 +1,8 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-# one:
-#   column: value
-#
-# two:
-#   column: value
+inc1:
+  number: qwerty-12345
+  incident_cat: call
+#  location: l1
+  dispatched_at: '2010/01/20 00:00:00'
+  arrived_at: '2010/01/20 00:05:00'
+  cleared_at: '2010/01/20 02:00:00'
+  narrative: There was a domestic dispute and the wife threw salad at the husband.

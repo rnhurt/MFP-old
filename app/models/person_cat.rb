@@ -1,0 +1,2 @@
+class PersonCat < Category
+end

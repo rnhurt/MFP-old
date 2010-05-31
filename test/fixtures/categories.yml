@@ -1,0 +1,53 @@
+call:
+  type: IncidentCat
+  name: Call
+  description: Call for service
+  active: true
+
+theft:
+  type: IncidentCat
+  name: Theft
+  description: Someone stole something from someone else
+  active: true
+
+robbery:
+  type: IncidentCat
+  name: Robbery (inactive)
+  description: This item is old and not used anymore
+  active: false
+  
+assult:
+  type: IncidentCat
+  name: Assult
+  description:
+  active: true
+
+vic:
+  type: PersonCat
+  name: Victim
+  description:
+  active: true
+
+wit:
+  type: PersonCat
+  name: Witness
+  description:
+  active: true
+
+home:
+  type: LocationCat
+  name: Home
+  description:
+  active: true
+
+work:
+  type: LocationCat
+  name: Work
+  description:
+  active: true
+
+office:
+  type: LocationCat
+  name: Office
+  description:
+  active: true
