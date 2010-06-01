@@ -3,8 +3,8 @@ class CreateVehicles < ActiveRecord::Migration
     create_table :vehicles do |t|
       t.string  :vin
       t.string  :color
-      t.string  :makecode
-      t.string  :modelcode
+      t.string  :make
+      t.string  :model
       t.string  :reg_number
       t.string  :reg_state
       t.integer :year

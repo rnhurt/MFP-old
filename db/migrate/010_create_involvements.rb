@@ -5,6 +5,7 @@ class CreateInvolvements < ActiveRecord::Migration
       t.integer :property_id
       t.integer :location_id
       t.integer :incident_id
+      t.integer :officer_id
       t.integer :person_id
       t.integer :vehicle_id
       t.integer :role_id

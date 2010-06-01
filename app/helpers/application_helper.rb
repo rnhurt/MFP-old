@@ -7,9 +7,9 @@ module ApplicationHelper
 
     ['incidents', 'people', 'vehicles', 'reports'].each do |page|
       content << if page_id == page
-        content_tag( :li, link_to(page.humanize, page , :class => 'ui-state-default ui-corner-top ui-tabs-selected ui-state-active'))
+        content_tag( :li, link_to(page.humanize, "/#{page}", :class => 'ui-state-default ui-corner-top ui-tabs-selected ui-state-active'))
       else
-        content_tag( :li, link_to(page.humanize, page , :class => 'ui-state-default ui-corner-top'))
+        content_tag( :li, link_to(page.humanize, "/#{page}", :class => 'ui-state-default ui-corner-top'))
       end
     end
 

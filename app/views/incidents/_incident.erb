@@ -4,12 +4,14 @@
   <%= f.error_messages %>
 
   <%= f.label :number, 'Incident #' %>
-  <%= f.text_field :number, :title => 'incident-1001' %>
+  <%= f.text_field :number, :disabled => true %>
+  <%#= f.text_field :number, :title => 'incident-1001', :class => 'autocomplete',
+    'data-autocomplete-url' => 'incidents.js' %>
   <%= f.submit 'Create New' if !@incident || @incident.new_record? %>
 
   <hr />
 
-  <%= f.label :incident_cat %>
+  <%= f.label :incident_cat, 'Category' %>
   <%= f.select :incident_cat, IncidentCat.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>

@@ -1,7 +1,18 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+v1:
+  vin: 209842034
+  year: 2009
+  make: AUDI
+  model: A3
+  color: Yellow
+  reg_number: 234-ASD
+  reg_state: CA
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+v2:
+  vin: asfafjlk23ASF
+  year: 1973
+  make: VW
+  model: Beatle
+  color: Blue
+  reg_number: ASD-234
+  reg_state: NC
+  

@@ -1,2 +1,32 @@
-<h1>Index</h1>
-<%= render 'incident' %>
+<% form_for :incident do |f| %>
+  <%= f.error_messages %>
+
+  <%#= f.label :number, 'Incident #' %>
+  <%#= f.text_field :number, :title => 'incident-1001', :class => 'autocomplete',
+    'data-autocomplete-url' => 'incidents.js' %>
+  <%#= f.submit 'Edit Incident' %>
+
+  <hr />
+
+  <label>Recent Incidents</label>
+  <table>
+    <thead>
+      <tr>
+        <th width="200">Number</th>
+        <th width="100">Date</th>
+        <th>Narrative</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @incidents.each do |incident| %>
+        <tr>
+          <%= content_tag :td, (link_to incident.number, {:action => 'edit', :id => incident}) %>
+          <%= content_tag :td, incident.dispatched_at.strftime("%a %b %d") %>
+          <%= content_tag :td, truncate(incident.narrative, 150) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%#= render 'incident' %>

@@ -1,7 +1,15 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+prop1:
+  type: Gun
+  value: 342.99
+  description: Glock 9mm, rough condition, serial number filed off.
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+prop2:
+  type: Gun
+  value: 9945
+  description: Rare Glock 11.5mm, new condition, found on body.
+
+prop2:
+  type: Drugs
+  description: small baggie of marijuana
+  
+

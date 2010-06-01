@@ -14,7 +14,7 @@ input.blur, textarea.blur {color:#999999;}
 .ui-icon {float:right;}
 
 table { width:100%; }
-
+.wysiwyg { display:inline-block; }
 
 .fieldWithErrors {
   padding: 2px;

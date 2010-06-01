@@ -1,19 +1,29 @@
 // Begin processing jQuery commands after the page loads
 $(function() {
-  $('.datepicker').datepicker();      // Initialize the date picker elements
-//  $('.timepicker').datetime({userLang:'en',americanMode:true});
+  $('textarea[title!=""],input[title!=""]').hint();   // Show input 'hints'
+  //  $('.timepicker').datetime({userLang:'en',americanMode:true});
 
-
-  //  UIInit();                       // Set up the user interface components
   tabInit();                      // Initialize the tab elements
   tableInit();                      // Initialize the tab elements
-  //  accordionInit();                // Initialize the accordian elements
-  //  calculatorInit();               // Initialize the calculator elements
-  //  thickboxInit();                 // Initialize the ThinkBox elements
-  $('textarea[title!=""],input[title!=""]').hint();   // Show input 'hints'
+  $('.wysiwyg').wysiwyg();
+
+  autocompleteInit();
+  $('.datepicker').datepicker();      // Initialize the date picker elements
   $("input.focus:last").focus();  // Set the focus on the last input tag with a class of "focus"
 });
 
+
+function autocompleteInit(){
+  $('input.autocomplete').each(function(index){
+    $(this).autocomplete({
+      source: $(this).attr('data-autocomplete-url'),
+      select: function(event, ui) {
+      //        alert('you chose: ' + ui.item.value)
+      },
+      minLength: 3
+    });
+  });
+}
 
 function tabInit(){
   $("#tabs").tabs({
@@ -23,12 +33,12 @@ function tabInit(){
 
 function tableInit(){
   $('table').dataTable({
-     "bJQueryUI": true
-    ,"bPaginate": false
-    ,"bSearch": false
-    ,"bFilter": false
-    ,"bInfo": false
-//    ,"bSort": false
-
-	});
+    "bJQueryUI": true,
+    "bPaginate": false,
+    "bSearch": false,
+    "bFilter": false,
+    "bInfo": false,
+    "bAutoWidth": false
+  //"bSort": false
+  });
 }

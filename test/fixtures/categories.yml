@@ -51,3 +51,15 @@ office:
   name: Office
   description:
   active: true
+
+gun:
+  type: PropertyCat
+  name: Weapon
+  description:
+  active: true
+
+drug:
+  type: PropertyCat
+  name: Drugs
+  description:
+  active: true

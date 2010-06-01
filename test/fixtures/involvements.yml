@@ -1,8 +1,16 @@
-i1:
+inv1:
+  incident: inc1
   location: l1
   person: joe1
+  officer: off1
+  vehicle: v1
+  property: prop3
 
-i2:
+inv2:
+  incident: inc1
   location: l1
   person: joe2
+  officer: off2
+  vehicle: v2
+  property: prop2
   
