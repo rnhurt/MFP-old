@@ -9,8 +9,8 @@
 
   <hr />
 
-  <%= f.label :category %>
-  <%= f.select :category, IncidentCategory.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
+  <%= f.label :incident_cat %>
+  <%= f.select :incident_cat, IncidentCat.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
   <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>
@@ -29,18 +29,14 @@
       </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Bob</td>
-      <td>Smith</td>
-      <td>123 W. Main St.  Louisville, KY  40222</td>
-      <td><img src="/images/rails.png" height="60" width="60"/></td>
-    </tr>
-    <tr>
-      <td>Steve</td>
-      <td>Smith</td>
-      <td>456 S. South St.  Louisville, KY  40222</td>
-      <td><img src="/images/rails.png" height="60" width="60"/></td>
-    </tr>
+      <% @incident.people.each do |p| %>
+        <tr>
+          <%= content_tag :td, p.first_name %>
+          <%= content_tag :td, p.last_name %>
+          <%= content_tag :td, p.address %>
+          <td></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 
@@ -51,21 +47,16 @@
     <thead>
       <tr>
         <th>Badge #</th>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
       </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>123</td>
-      <td>Dick</td>
-      <td>Trickle</td>
-    </tr>
-    <tr>
-      <td>ZXY</td>
-      <td>Richard</td>
-      <td>Jones</td>
-    </tr>
+      <%# @incident.officers.each do |o| %>
+        <tr>
+          <%#= content_tag :td, o.badge %>
+          <%#= content_tag :td, o.full_name %>
+        </tr>
+      <%# end %>
     </tbody>
   </table>
 
@@ -84,14 +75,16 @@
       </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>ASFASLWERWER2342</td>
-      <td>1983</td>
-      <td>VW</td>
-      <td>Rabbit GTI</td>
-      <td>Black</td>
-      <td>123-xyz</td>
-    </tr>
+      <%# @incident.vehicles.each do |v| %>
+      <%# end %>
+      <tr>
+        <td>ASFASLWERWER2342</td>
+        <td>1983</td>
+        <td>VW</td>
+        <td>Rabbit GTI</td>
+        <td>Black</td>
+        <td>123-xyz</td>
+      </tr>
     </tbody>
   </table>
 
@@ -106,25 +99,25 @@
       </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>Gun</td>
-      <td>S&W 9mm</td>
-    </tr>
-    <tr>
-      <td>Drugs</td>
-      <td>5oz. of pot in a little plastic baggie + 2 rolled joints and 1 partially smoked roach.</td>
-    </tr>
+      <tr>
+        <td>Gun</td>
+        <td>S&W 9mm</td>
+      </tr>
+      <tr>
+        <td>Drugs</td>
+        <td>5oz. of pot in a little plastic baggie + 2 rolled joints and 1 partially smoked roach.</td>
+      </tr>
     </tbody>
   </table>
 
-    <div class="clearfix">&nbsp;</div>
+  <div class="clearfix">&nbsp;</div>
 
-    <%= f.label :narrative %>
-    <%= f.text_area :narrative, :rows => 10, :cols => 80, :title => 'Describe the incident here...' %>
+  <%= f.label :narrative %>
+  <%= f.text_area :narrative, :rows => 10, :cols => 80, :title => 'Describe the incident here...' %>
 
-    <div class="clearfix">&nbsp;</div>
+  <div class="clearfix">&nbsp;</div>
 
-    <%= f.submit 'Save' %>
-  <% end %>
+  <%= f.submit 'Save' %>
+<% end %>
 
 

@@ -1,5 +1,9 @@
 class IncidentsController < ApplicationController
-    
+
+  def index
+    @incident = Incident.new
+  end
+  
   def create
     @incident = Incident.create(:number => params[:incident][:number])
 
