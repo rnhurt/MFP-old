@@ -52,7 +52,7 @@
     </thead>
     <tbody>
       <%# @incident.officers.each do |o| %>
-        <tr>
+      <tr><td></td><td></td>
           <%#= content_tag :td, o.badge %>
           <%#= content_tag :td, o.full_name %>
         </tr>
@@ -75,16 +75,16 @@
       </tr>
     </thead>
     <tbody>
-      <%# @incident.vehicles.each do |v| %>
-      <%# end %>
+      <% @incident.vehicles.each do |v| %>
       <tr>
-        <td>ASFASLWERWER2342</td>
-        <td>1983</td>
-        <td>VW</td>
-        <td>Rabbit GTI</td>
-        <td>Black</td>
-        <td>123-xyz</td>
+        <%= content_tag :td, v.vin %>
+        <%= content_tag :td, v.year %>
+        <%= content_tag :td, v.make %>
+        <%= content_tag :td, v.model %>
+        <%= content_tag :td, v.color %>
+        <%= content_tag :td, v.license %>
       </tr>
+      <% end %>
     </tbody>
   </table>
 
@@ -99,14 +99,12 @@
       </tr>
     </thead>
     <tbody>
+      <% @incident.properties.each do |p| %>
       <tr>
-        <td>Gun</td>
-        <td>S&W 9mm</td>
+        <%= content_tag :td, p.type %>
+        <%= content_tag :td, p.description %>
       </tr>
-      <tr>
-        <td>Drugs</td>
-        <td>5oz. of pot in a little plastic baggie + 2 rolled joints and 1 partially smoked roach.</td>
-      </tr>
+      <% end %>
     </tbody>
   </table>
 

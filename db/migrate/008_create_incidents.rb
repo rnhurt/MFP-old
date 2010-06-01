@@ -15,6 +15,8 @@ class CreateIncidents < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :incidents, :number, :unique => true
   end
 
   def self.down
