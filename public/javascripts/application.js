@@ -1,10 +1,10 @@
 // Begin processing jQuery commands after the page loads
 $(function() {
+  tableInit();                      // Initialize the tab elements
   $('textarea[title!=""],input[title!=""]').hint();   // Show input 'hints'
   //  $('.timepicker').datetime({userLang:'en',americanMode:true});
 
   tabInit();                      // Initialize the tab elements
-  tableInit();                      // Initialize the tab elements
   $('.wysiwyg').wysiwyg();
   $("button, input:submit").button();
 

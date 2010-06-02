@@ -12,6 +12,8 @@ module ApplicationHelper
         content_tag( :li, link_to(page.humanize, "/#{page}", :class => 'ui-state-default ui-corner-top'))
       end
     end
+    # Add site specific menu items
+    content << content_tag( :li, link_to('Admin', "/admin", :class => 'ui-state-error ui-corner-top'))
 
     return content
 	end

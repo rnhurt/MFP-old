@@ -16,9 +16,7 @@
   <body>
     <div class='container'>
       <div id='header'>
-        <h1 style="float:left;">Dingo - Law Enforcement RMS</h1>
-
-        <div id="user_nav" class="ui-widget ui-corner-all">
+        <div id="user_nav" class="ui-widget ui-widget-content ui-widget-header ui-corner-bottom">
           <% if !current_user %>
             <span><%= link_to " log in ", login_path %></span>
           <% else %>
@@ -27,6 +25,8 @@
             <span><%= link_to "log out", logout_path, :method => :delete %></span>
           <% end %>
         </div>
+        <h1>Dingo - Law Enforcement RMS</h1>
+
       </div>
       <div id='flash'><%= show_flash %></div>
 

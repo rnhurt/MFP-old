@@ -1,16 +1,22 @@
-body { font: 13px Arial, Helvetica, sans-serif; }
-#header { margin:auto; padding-bottom: 20px; }
-#footer {margin: auto;padding-top: 20px;text-align: center;font-size: 0.8em;}
-#user_nav { float:right; }
-div.container { background-color:transparent; margin:0px auto; padding:0; width:950px; }
+@import url("http://fonts.googleapis.com/css?family=Vollkorn");
+iframe#no_ie6 { width: 600px; height: 300px; overflow: hidden; border: 4px solid #777; position: absolute; top: 50px; left: 50%; margin-left: -300px; z-index: 100; }
 
-#center_form {margin:auto; width:326px;}
+body { font: 12px Arial, Helvetica, sans-serif;}
+
+#header { margin:auto; height:64px; background:url("/images/logo-thumb.png") left no-repeat}
+#header h1 {font-size:xx-large; padding: 20px 0px 0px 65px; font-family: 'Vollkorn', arial, serif;}
+#footer {margin: auto;padding-top: 20px;text-align: center;font-size: 0.8em;}
+#user_nav { float:right; height:25px; width:200px; text-align:center;}
+
+div.container { background-color:transparent; margin:0px auto; padding:0; width:  950px;}
 
 form label {display:inline-block; text-align:right; width:100px; vertical-align: top; padding-right: 10px}
 form p { display:inline-block}
 input.blur, textarea.blur {color:#999999;}
 
-.dataTables_wrapper { display:inline-block; position: relative; clear: both; width: 760px;}
+.dataTables_wrapper { display:inline-block; position: relative; clear: both; width: 760px;
+  /* IE hack */
+  zoom:1; *display:inline;}
 .ui-icon {float:right;}
 
 table { width:100%; }

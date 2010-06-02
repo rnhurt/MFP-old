@@ -6,22 +6,29 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <title>Dingo<%= " - " + controller.controller_name.humanize -%></title>
 
-    <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.1.custom', 'main', :cache => '../system/all' -%>
+    <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.1',
+      'demo_table_jui.css','jquery.wysiwyg',
+      'timepicker_plug' ,'main', :cache => '../system/all' -%>
 
     <%= @content_for_page_header -%>
   </head>
 
   <body>
-    <div class="container">
-      <div class="header">
-        <div class="clearfix">&nbsp;</div>
+    <!--[if IE 6]><iframe src="ie6unsupported.html" frameborder="0" id="no_ie6"></iframe><![endif]-->
+    <div class='container'>
+      <div id='header'>
+        <h1>Dingo - Law Enforcement RMS</h1>
+
       </div>
-      
-      <div class="content">
-        <%= yield -%>
+      <div id='flash'><%= show_flash %></div>
+
+      <div class="ui-widget" style="padding:10px; width:500px; margin:auto;">
+        <%= yield  %>
       </div>
 
-      <%= render :partial => "layouts/footer" %>
     </div>
-  </body>
+
+    <%= render :partial => "layouts/footer" %>
+  </div>
+</body>
 </html>
