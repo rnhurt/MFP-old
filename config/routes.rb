@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :incidents
   map.resources :vehicles
   map.resources :reports
+  map.resources :admin
 
   # By default, we want the user to see this page.
   map.root :controller => 'incidents', :action => 'redirect'

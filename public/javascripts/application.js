@@ -9,6 +9,7 @@ $(function() {
   $("button, input:submit").button();
 
   autocompleteInit();
+  $(".accordion").accordion();
   $('.datepicker').datepicker();      // Initialize the date picker elements
   $("input.focus:last").focus();  // Set the focus on the last input tag with a class of "focus"
 });
@@ -27,10 +28,13 @@ function autocompleteInit(){
 }
 
 function tabInit(){
-  $("#tabs").tabs({
+  $("#tabs, #vtabs").tabs({
     //cookie: {expires: 1}
     });
+  $("#vtabs").tabs().addClass('ui-tabs-vertical ui-helper-clearfix');
+  $("#vtabs li").removeClass('ui-corner-top').addClass('ui-corner-left');
 }
+
 
 function tableInit(){
   $('table').dataTable({
