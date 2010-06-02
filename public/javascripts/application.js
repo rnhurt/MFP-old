@@ -6,6 +6,7 @@ $(function() {
   tabInit();                      // Initialize the tab elements
   tableInit();                      // Initialize the tab elements
   $('.wysiwyg').wysiwyg();
+  $("button, input:submit").button();
 
   autocompleteInit();
   $('.datepicker').datepicker();      // Initialize the date picker elements

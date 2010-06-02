@@ -16,6 +16,7 @@ input.blur, textarea.blur {color:#999999;}
 table { width:100%; }
 .wysiwyg { display:inline-block; }
 
+#flash { margin:auto; text-align:center }
 .fieldWithErrors {
   padding: 2px;
   background-color: red;

@@ -11,8 +11,8 @@
 
   <hr />
 
-  <%= f.label :incident_cat, 'Category' %>
-  <%= f.select :incident_cat, IncidentCat.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
+  <%= f.label :category, 'Category' %>
+  <%= select :category, IncidentCat.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
   <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>

@@ -20,7 +20,8 @@ module ApplicationHelper
   # Show the FLASH div if there is data in the flash object.
 	def show_flash
 		result = ''
-		flash.each {|type, message| result << content_tag(:div, message, :id => 'notice', :class => type.to_s) }
+		flash.each {|type, message| result << content_tag(:div, message, :id => 'flash',
+        :class => "#{type.to_s} ui-state-highlight ui-corner-all") }
 		return result
 	end
 

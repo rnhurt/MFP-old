@@ -1,13 +1,6 @@
 <% form_for :incident do |f| %>
   <%= f.error_messages %>
 
-  <%#= f.label :number, 'Incident #' %>
-  <%#= f.text_field :number, :title => 'incident-1001', :class => 'autocomplete',
-    'data-autocomplete-url' => 'incidents.js' %>
-  <%#= f.submit 'Edit Incident' %>
-
-  <hr />
-
   <label>Recent Incidents</label>
   <table>
     <thead>
@@ -20,9 +13,9 @@
     <tbody>
       <% @incidents.each do |incident| %>
         <tr>
-          <%= content_tag :td, (link_to incident.number, {:action => 'edit', :id => incident}) %>
+          <%= content_tag :td, (link_to incident.number, {:action => 'edit', :id => incident}, :size => '190') %>
           <%= content_tag :td, incident.dispatched_at.strftime("%a %b %d") %>
-          <%= content_tag :td, truncate(incident.narrative, 150) %>
+          <%= content_tag :td, truncate(incident.narrative, {:length => 150}) %>
         </tr>
       <% end %>
     </tbody>
