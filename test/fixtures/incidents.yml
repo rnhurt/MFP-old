@@ -1,6 +1,6 @@
 inc1:
   number: qwerty-12345
-  incident_cat: call
+  category: call
 #  location: l1
   dispatched_at: '2010/01/20 00:00:00'
   arrived_at: '2010/01/20 00:05:00'
@@ -9,7 +9,7 @@ inc1:
 
 inc2:
   number: abcdefghi
-  incident_cat: theft
+  category: theft
 #  location: l1
   dispatched_at: '2010/02/22 03:00:00'
   arrived_at: '2010/02/22 03:05:00'
@@ -18,7 +18,7 @@ inc2:
 
 inc3:
   number: asf34qwea-3452134
-  incident_cat: assult
+  category: assult
 #  location: l1
   dispatched_at: '2009/09/22 03:00:00'
   arrived_at: '2009/09/22 03:05:00'
@@ -27,7 +27,7 @@ inc3:
 
 inc4:
   number: q23009fgklja$%^lkja
-  incident_cat: assult
+  category: assult
 #  location: l1
   dispatched_at: '2007/07/22 03:00:00'
   arrived_at: '2007/07/22 03:05:00'

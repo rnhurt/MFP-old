@@ -7,7 +7,7 @@ class Incident < ActiveRecord::Base
   has_many  :properties,  :through => :involvements
 
   belongs_to  :location
-  belongs_to  :incident_cat
+  belongs_to  :category
 
   # Validations
   validates_length_of     :number, :minimum => 1

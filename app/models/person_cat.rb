@@ -1,2 +1,0 @@
-class PersonCat < Category
-end

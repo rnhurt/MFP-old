@@ -98,7 +98,7 @@
     <tbody>
       <% @incident.properties.each do |p| %>
         <tr>
-          <%= content_tag :td, p.type %>
+          <%= content_tag :td, p.category %>
           <%= content_tag :td, p.description %>
         </tr>
       <% end %>

@@ -2,7 +2,7 @@ class CreateIncidents < ActiveRecord::Migration
   def self.up
     create_table :incidents do |t|
       t.string    :number,      :null => false
-      t.integer   :incident_cat_id
+      t.integer   :category_id
       t.integer   :location_id
       t.date      :date
       t.timestamp :dispatched_at

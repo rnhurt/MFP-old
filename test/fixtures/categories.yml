@@ -1,65 +1,71 @@
 call:
-  type: IncidentCat
+  category_type: Incident
   name: Call
   description: Call for service
   active: true
 
 theft:
-  type: IncidentCat
+  category_type: Incident
   name: Theft
   description: Someone stole something from someone else
   active: true
 
 robbery:
-  type: IncidentCat
+  category_type: Incident
   name: Robbery (inactive)
   description: This item is old and not used anymore
   active: false
-  
+
 assult:
-  type: IncidentCat
+  category_type: Incident
   name: Assult
   description:
   active: true
 
 vic:
-  type: PersonCat
+  category_type: Person
   name: Victim
   description:
   active: true
 
 wit:
-  type: PersonCat
+  category_type: Person
   name: Witness
   description:
   active: true
 
 home:
-  type: LocationCat
+  category_type: Contact
   name: Home
   description:
   active: true
 
 work:
-  type: LocationCat
+  category_type: Contact
   name: Work
   description:
   active: true
 
+other:
+  category_type: Contact
+  name: Other
+  description:
+  active: true
+
 office:
-  type: LocationCat
+  category_type: Location
   name: Office
   description:
   active: true
 
 gun:
-  type: PropertyCat
+  category_type: Property
   name: Weapon
   description:
   active: true
 
 drug:
-  type: PropertyCat
+  category_type: Property
   name: Drugs
   description:
   active: true

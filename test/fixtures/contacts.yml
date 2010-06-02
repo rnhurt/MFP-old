@@ -1,7 +1,14 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+contact1:
+  person: joe1
+  category: home
+  location: loc1
+  phone_number: 5551234567
+  email_address: test@example.com
 
-# one:
-#   column: value
-#
-# two:
-#   column: value
+contact2:
+  person: steve2
+  category: work
+  location: loc2
+  phone_number: 5551234567
+  email_address: test2@example.com
+
