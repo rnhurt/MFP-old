@@ -5,6 +5,7 @@ body { font: 12px Arial, Helvetica, sans-serif;}
 
 #header { margin:auto; height:64px; background:url("/images/logo-thumb.png") left no-repeat}
 #header h1 {font-size:xx-large; padding: 20px 0px 0px 65px; font-family: 'Vollkorn', arial, serif;}
+#header a {text-decoration: none;}
 #footer {margin: auto;padding-top: 20px;text-align: center;font-size: 0.8em;}
 #user_nav { float:right; height:25px; width:200px; text-align:center;}
 
