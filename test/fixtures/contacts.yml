@@ -6,6 +6,13 @@ contact1:
   email_address: test@example.com
 
 contact2:
+  person: joe2
+  category: work
+  location: loc1
+  phone_number: 5551234567
+  email_address: test@example.com
+
+contact3:
   person: steve2
   category: work
   location: loc2

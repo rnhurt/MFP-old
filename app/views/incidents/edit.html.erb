@@ -8,8 +8,8 @@
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label :incident_cat, 'Category' %>
-  <%= f.select :incident_cat, IncidentCat.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
+  <%= f.label :category %>
+  <%= f.select :category, Category.incidents.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
   <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>
@@ -32,7 +32,7 @@
         <tr>
           <%= content_tag :td, p.first_name %>
           <%= content_tag :td, p.last_name %>
-          <%= content_tag :td, p.locations.first.address %>
+          <%= content_tag :td, p.locations.first ? p.locations.first.address : '' %>
           <td></td>
         </tr>
       <% end %>
@@ -98,7 +98,7 @@
     <tbody>
       <% @incident.properties.each do |p| %>
         <tr>
-          <%= content_tag :td, p.category %>
+          <%= content_tag :td, p.category.name %>
           <%= content_tag :td, p.description %>
         </tr>
       <% end %>
