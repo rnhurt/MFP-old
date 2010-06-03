@@ -1,22 +1,29 @@
+<% form_for :person do |f| %>
+  <%= f.error_messages %>
 
-<% form_for :People do |f| %>
-  <%= f.label 'Name:' %>
+  <label>Recent People</label>
+  <table>
+    <thead>
+      <tr>
+        <th width="100">SSN</th>
+        <th>Name</th>
+        <th>DOB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @people.each do |person| %>
+        <tr>
+          <%= content_tag :td, (link_to person.ssn, {:action => 'edit', :id => person}) %>
+          <%= content_tag :td, (link_to person.full_name, {:action => 'edit', :id => person}) %>
+          <% if person.dob %>
+            <%= content_tag :td, person.dob.strftime("%B %d, %Y") %>
+          <% else %>
+            <td></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 
-  <%= f.text_field :first_name, :size => 20, :title => 'first' %>
-  <%= f.text_field :middle_name, :size => 20, :title => 'middle' %>
-  <%= f.text_field :last_name, :size => 20, :title => 'last' %>
-
-  <div class="clearfix">&nbsp;</div>
-
-  <%= f.label 'Address:' %>
-  <%= f.text_field :street_number, :size => 14, :title => 'street number' %>
-  <%= f.text_field :street_name, :size => 50, :title => 'street name' %>
-
-  <br />
-
-  <%= f.label '' %>
-  <%= f.text_field :city, :size => 35, :title => 'city' %>
-  <%#= f.select :state, @states.collect { |m| [m.name, m.id] }, :size => 2 %>
-  <%= f.text_field :postal_code, :size => 7, :title => 'zip code' %>
-
-<% end %>
+  <%#= render 'incident' %>

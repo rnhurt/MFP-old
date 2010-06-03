@@ -3,6 +3,7 @@ joe1:
   first_name: Joe
   last_name: Sarkfs
   ssn: 123-45-6789
+  dob: 1994-08-22
 
 joe2:
   person_master: Mjoe

@@ -1,12 +1,13 @@
 class PeopleController < ApplicationController
 
   def index
-
-  end
-    
-  def redirect
-    redirect_to :action => 'index'
+    @people = Person.recent
   end
 
+  def edit
+    @person = Person.find(params[:id])
+  end
+
+  
 
 end
