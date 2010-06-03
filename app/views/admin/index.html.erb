@@ -1,39 +1,65 @@
-  <div id="vtabs">
-	<ul>
-		<li><a href="#agency">Agency Settings</a></li>
-		<li><a href="#user">User Maintenance</a></li>
-		<li><a href="#audit">Audit History</a></li>
-		<li><a href="#report">Report Maintenance</a></li>
-	</ul>
-	<div id="agency">
-		<p>
+<div id="vtabs">
+  <ul>
+    <li><a href="#agency">Agency Settings</a></li>
+    <li><a href="#user">User Maintenance</a></li>
+    <li><a href="#audit">Audit History</a></li>
+    <li><a href="#report">Report Maintenance</a></li>
+  </ul>
+  <div id="agency">
+    <p>
       <% form_for :agency do |f| %>
-      <%= f.label 'Name' %>
-      <%= f.text_field :name %>
+        <%= f.label 'Name' %>
+        <%= f.text_field :name %>
 
-      <br />
+        <br />
 
-      <%= f.label 'Logo' %>
-      <%= f.file_field :logo %>
+        <%= f.label 'Logo' %>
+        <%= f.file_field :logo %>
 
       <% end %>
     </p>
-	</div>
-	<div id="user">
-		<p>
-      This is where you will add new users, de-activate existing ones, change passwords, etc.
+  </div>
+  <div id="user">
+    <% form_for :users do |f| %>
+      <table class="dataTable">
+        <thead>
+          <tr>
+            <th>Login</th>
+            <th>Password</th>
+            <% for role in User::ROLES %>
+              <%= content_tag :th, role.humanize %>
+            <% end %>
+        </thead>
+        <tbody>
+          <% User.all.each do |user|  %>
+            <tr>
+              <%= content_tag :td, user.login %>
+              <%= content_tag :td, user.password %>
+              <% for role in User::ROLES %>
+                <td>
+                  <%= check_box_tag "user[#{user.id}][roles][]", role, user.roles.include?(role) %>
+                </td>
+              <% end %>
+              <%= hidden_field_tag "user[#{user.id}][roles][]"%>
+
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= submit_tag 'Save' %>
+    <% end %>
     </p>
-	</div>
-	<div id="audit">
-		<p>
+  </div>
+  <div id="audit">
+    <p>
       This tab will display the audit information.  Each change in the system is recorded and
       logged in the database.  That way if someone changes something by mistake it can be found
       and fixed.
     </p>
-	</div>
-	<div id="report">
-		<p>
+  </div>
+  <div id="report">
+    <p>
       You will be able to use this tab to make specific reports available to the users.
     </p>
-	</div>
+  </div>
 </div>

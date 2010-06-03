@@ -37,7 +37,7 @@ function tabInit(){
 
 
 function tableInit(){
-  $('table').dataTable({
+  $('.dataTable').dataTable({
     "bJQueryUI": true,
     "bPaginate": false,
     "bSearch": false,
