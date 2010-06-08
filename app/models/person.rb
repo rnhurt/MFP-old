@@ -7,13 +7,16 @@ class Person < ActiveRecord::Base
   has_many    :locations, :through => :involvements
 
 
+  # Show the most recently edited records
+  named_scope :recent, :order => 'updated_at DESC', :limit => 10
 
   # Convenience method to return the persons full name
   def full_name
     return "#{first_name} #{last_name}"
   end
 
-  # Show the most recently edit people
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
-
+  def self.search(term)
+    self.find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ?',
+        "%#{term}%", "%#{term}%"])
+  end
 end

@@ -17,4 +17,9 @@ class Incident < ActiveRecord::Base
   # Show the most recently dispatched incidents
   named_scope :recent, :order => 'dispatched_at DESC', :limit => 10
 
+  
+  def self.search(term)
+    self.find(:all, :conditions => ['number LIKE ?', "%#{term}%"])
+  end
+
 end

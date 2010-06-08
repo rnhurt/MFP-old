@@ -20,7 +20,7 @@ function autocompleteInit(){
     $(this).autocomplete({
       source: $(this).attr('data-autocomplete-url'),
       select: function(event, ui) {
-      //        alert('you chose: ' + ui.item.value)
+        alert('you chose: ' + ui.item.value)
       },
       minLength: 3
     });

@@ -1,1 +1,13 @@
-<h1>Vehicle information goes here</h1>
+<% form_for :vehicle, :action => :new, :html => { :method => :get } do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= f.text_field 'term', :class => 'autocomplete', 'data-autocomplete-url' => autocomplete_vehicles_path %>
+  <%= f.submit 'Search for an existing vehicle', :name => 'search' %>
+  <%= f.submit 'Enter a new vehicle', :name => 'new' %>
+
+  <hr class="clearfix" />
+
+  <%#= render 'people' %>
+
+<% end %>

@@ -1,29 +1,13 @@
-<% form_for :person do |f| %>
+<% form_for :person, :action => :new, :html => { :method => :get } do |f| %>
+
   <%= f.error_messages %>
 
-  <label>Recent People</label>
-  <table class="dataTable">
-    <thead>
-      <tr>
-        <th width="100">SSN</th>
-        <th>Name</th>
-        <th>DOB</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @people.each do |person| %>
-        <tr>
-          <%= content_tag :td, (link_to person.ssn, {:action => 'edit', :id => person}) %>
-          <%= content_tag :td, (link_to person.full_name, {:action => 'edit', :id => person}) %>
-          <% if person.dob %>
-            <%= content_tag :td, person.dob.strftime("%B %d, %Y") %>
-          <% else %>
-            <td></td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+  <%= f.text_field 'term', :class => 'autocomplete', 'data-autocomplete-url' => autocomplete_people_path %>
+  <%= f.submit 'Search for an existing person', :id => 'person_search', :name => 'search' %>
+  <%= f.submit 'Enter a new person', :id => 'person_new', :name => 'new' %>
 
-  <%#= render 'incident' %>
+  <hr class="clearfix" />
+
+  <%= render 'people_table' %>
+
+<% end %>

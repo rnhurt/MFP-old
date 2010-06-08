@@ -1,0 +1,15 @@
+<% form_for @vehicle do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.label :vin, 'VIN' %>
+  <%= f.text_field :vin, :title => '', :size => 20 %>
+
+  <div class="clearfix">&nbsp;</div>
+
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.submit 'Save' %>
+  <%= link_to 'Cancel', people_path %>
+
+<% end %>

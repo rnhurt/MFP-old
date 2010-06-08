@@ -1,24 +1,28 @@
 class IncidentsController < ApplicationController
 
   def index
-    respond_to do |format|
-      format.html { @incidents = Incident.recent }
-      format.js {
-        incidents = Incident.find(:all, :conditions => ['number LIKE ?', "%#{params[:term]}%"])
-        render :js => incidents.collect{|i| i.number}
-      }
+    if params[:new]
+      redirect_to :action => :new
+    elsif params[:incident]
+      @incidents = Incident.search(params[:incident][:term])
+    else
+      @incidents = Incident.recent
     end
   end
 
+  def new
+    @incident = Incident.new
+  end
+
   def create
-    @incident = Incident.create(:number => params[:incident][:number])
+    @incident = Incident.new(params[:incident])
 
     if @incident.save
-      flash[:notice] = "Incident '#{@incident.number}' was successfully created."
-      render :action => 'edit'
+      flash[:notice] = "'#{@incident.number}' was successfully inserted into the system."
+      redirect_to :action => :index
     else
-      render :action => 'new'
-    end    
+      render :action => :new
+    end
   end
 
   def edit
@@ -29,17 +33,18 @@ class IncidentsController < ApplicationController
     @incident = Incident.find(params[:id])
 
     if @incident.update_attributes(params[:incident])
-      flash[:notice] = "Incident '#{@incident.number}' was successfully updated."
+      flash[:notice] = "'#{@incident.full_name}' was successfully updated."
+      redirect_to :action => :index
     else
-      flash[:error] = "Course '#{@course.name}' failed to update."
+      flash[:error] = "'#{@incident.full_name}' failed to update."
+      redirect_to :action => :edit
     end
-
-    redirect_to :action => 'edit'
   end
 
-  
-  def redirect
-    redirect_to :action => 'index'
+  def autocomplete
+    @incidents = Incident.search(params[:term])
+
+    render :partial => 'incidents_table'
   end
 
 end
