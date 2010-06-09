@@ -41,6 +41,10 @@ class IncidentsController < ApplicationController
     end
   end
 
+  def redirect
+    redirect_to :action => :index
+  end
+
   def search
     @incidents = Incident.search(params[:term])
   end
