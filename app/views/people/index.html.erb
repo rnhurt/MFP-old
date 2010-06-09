@@ -2,12 +2,14 @@
 
   <%= f.error_messages %>
 
-  <%= f.text_field 'term', :class => 'autocomplete', 'data-autocomplete-url' => autocomplete_people_path %>
+  <%= f.text_field 'term', :class => 'search focus', 'data-search-url' => search_people_path %>
   <%= f.submit 'Search for an existing person', :id => 'person_search', :name => 'search' %>
   <%= f.submit 'Enter a new person', :id => 'person_new', :name => 'new' %>
 
   <hr class="clearfix" />
 
-  <%= render 'people_table' %>
-
+  <div id="people">
+    <%= render 'people_table' %>
+  </div>
+  
 <% end %>

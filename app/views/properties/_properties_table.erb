@@ -1,0 +1,18 @@
+<table class="dataTable">
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @properties.each do |property| %>
+      <tr>
+        <%= content_tag :td, (link_to property.category.name, {:action => 'edit', :id => property}) %>
+        <%= content_tag :td, number_to_currency(property.value) %>
+        <%= content_tag :td, property.description %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

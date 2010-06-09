@@ -43,15 +43,9 @@ class PeopleController < ApplicationController
       redirect_to :action => :edit
     end
   end
-  
-  def autocomplete
-    @people = Person.search(params[:term])
 
-    #    render :partial => 'people_table'
-#    respond_to do  |format|
-#      format.html { puts '============= HTML'}
-#      format.js {render :layout => false}
-#    end
+  def search
+    @people = Person.search(params[:term])
   end
   
 end

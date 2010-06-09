@@ -5,7 +5,7 @@ module ApplicationHelper
 	def menu_builder(page_id)
 		content = ''
 
-    ['incidents', 'people', 'vehicles', 'reports', 'admin'].each do |page|
+    ['incidents', 'people', 'vehicles', 'properties', 'reports', 'admin'].each do |page|
       # Set the class depending on which page we are one
       link_class = 'ui-state-default ui-corner-top'                         # Non-current page
       link_class << ' ui-tabs-selected ui-state-active' if page_id == page  # Current page

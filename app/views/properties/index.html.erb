@@ -1,0 +1,15 @@
+<% form_for :property, :action => :new, :html => { :method => :get } do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= f.text_field 'term', :class => 'search focus', 'data-search-url' => search_properties_path %>
+  <%= f.submit 'Search for an existing property', :name => 'search' %>
+  <%= f.submit 'Enter a new property', :name => 'new' %>
+
+  <hr class="clearfix" />
+
+  <div id="properties">
+    <%= render 'properties_table' %>
+  </div>
+
+<% end %>

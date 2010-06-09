@@ -41,10 +41,8 @@ class VehiclesController < ApplicationController
     end
   end
 
-  def autocomplete
-    @vehicle = Vehicle.search(params[:term])
-
-    render :partial => 'people'
+  def search
+    @vehicles = Vehicle.search(params[:term])
   end
 
 end

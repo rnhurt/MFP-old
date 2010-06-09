@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   # Authlogic support
   map.resource :account, :controller => 'users'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
@@ -7,10 +8,11 @@ ActionController::Routing::Routes.draw do |map|
 
   # Standard routes
   map.resources :user_sessions
-  map.resources :people,    :collection => { :autocomplete => :get}
-  map.resources :incidents, :collection => { :autocomplete => :get}
-  map.resources :vehicles,  :collection => { :autocomplete => :get}
-  map.resources :reports,   :collection => { :autocomplete => :get}
+  map.resources :people,    :collection => { :search => :get}
+  map.resources :incidents, :collection => { :search => :get}
+  map.resources :vehicles,  :collection => { :search => :get}
+  map.resources :properties,:collection => { :search => :get}
+  map.resources :reports,   :collection => { :search => :get}
   map.resources :admin
 
   # By default, we want the user to see this page.

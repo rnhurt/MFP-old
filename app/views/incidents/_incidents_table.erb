@@ -2,7 +2,7 @@
     <thead>
       <tr>
         <th width="200">Number</th>
-        <th width="100">Date</th>
+        <th width="140">Date</th>
         <th>Narrative</th>
       </tr>
     </thead>
@@ -10,7 +10,7 @@
       <% @incidents.each do |incident| %>
         <tr>
           <%= content_tag :td, (link_to incident.number, {:action => 'edit', :id => incident}) %>
-          <%= content_tag :td, incident.dispatched_at.strftime("%a %b %d") %>
+          <%= content_tag :td, incident.dispatched_at.strftime("%a, %b %d, %Y") %>
           <%= content_tag :td, truncate(incident.narrative, {:length => 150}) %>
         </tr>
       <% end %>

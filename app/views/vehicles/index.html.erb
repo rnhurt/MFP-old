@@ -2,12 +2,13 @@
 
   <%= f.error_messages %>
 
-  <%= f.text_field 'term', :class => 'autocomplete', 'data-autocomplete-url' => autocomplete_vehicles_path %>
+  <%= f.text_field 'term', :class => 'search focus', 'data-search-url' => search_vehicles_path %>
   <%= f.submit 'Search for an existing vehicle', :name => 'search' %>
   <%= f.submit 'Enter a new vehicle', :name => 'new' %>
 
   <hr class="clearfix" />
 
-  <%#= render 'people' %>
-
+  <div id="vehicles">
+    <%= render 'vehicles_table' %>
+  </div>
 <% end %>

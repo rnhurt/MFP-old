@@ -1,6 +1,6 @@
 // Begin processing jQuery commands after the page loads
 $(function() {
-  tableInit();                      // Initialize the tab elements
+  tableInit();                      // Initialize the table elements
   $('textarea[title!=""],input[title!=""]').hint();   // Show input 'hints'
   //  $('.timepicker').datetime({userLang:'en',americanMode:true});
 
@@ -8,22 +8,23 @@ $(function() {
   $('.wysiwyg').wysiwyg();
   $("button, input:submit").button();
 
-  autocompleteInit();
   $(".accordion").accordion();
   $('.datepicker').datepicker();      // Initialize the date picker elements
   $("input.focus:last").focus();  // Set the focus on the last input tag with a class of "focus"
+  searchInit();
 });
 
 
-function autocompleteInit(){
-  $('input.autocomplete').each(function(index){
-    $(this).autocomplete({
-      source: $(this).attr('data-autocomplete-url'),
-      select: function(event, ui) {
-        alert('you chose: ' + ui.item.value)
-      },
-      minLength: 3
-    });
+function searchInit(){
+  $('input.search').keyup(function() {
+    element = $(this);
+    delay(function(){
+      data = element.val();
+      url = element.attr('data-search-url');
+      if (data.length > 2) {
+        $.get(url, "term="+data, null, 'script');
+      }
+    }, 750 );
   });
 }
 
@@ -47,3 +48,11 @@ function tableInit(){
   //"bSort": false
   });
 }
+
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();

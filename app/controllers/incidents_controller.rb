@@ -41,10 +41,8 @@ class IncidentsController < ApplicationController
     end
   end
 
-  def autocomplete
+  def search
     @incidents = Incident.search(params[:term])
-
-    render :partial => 'incidents_table'
   end
 
 end

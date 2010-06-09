@@ -16,7 +16,8 @@ class Person < ActiveRecord::Base
   end
 
   def self.search(term)
-    self.find(:all, :conditions => ['first_name LIKE ? OR last_name LIKE ?',
-        "%#{term}%", "%#{term}%"])
+    search = "%#{term}%"
+    self.find(:all, :conditions => ["first_name || ' ' || last_name LIKE ? OR first_name LIKE ? OR last_name LIKE ? OR ssn LIKE ?",
+        search, search, search, search])
   end
 end

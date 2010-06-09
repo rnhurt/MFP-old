@@ -1,0 +1,22 @@
+<table class="dataTable">
+  <thead>
+    <tr>
+      <th>VIN</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vehicles.each do |vehicle| %>
+      <tr>
+        <%= content_tag :td, (link_to vehicle.vin, {:action => 'edit', :id => vehicle}) %>
+        <%= content_tag :td, vehicle.make %>
+        <%= content_tag :td, vehicle.model %>
+        <%= content_tag :td, vehicle.year %>
+        <%= content_tag :td, vehicle.color %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
