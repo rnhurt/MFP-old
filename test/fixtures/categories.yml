@@ -58,7 +58,7 @@ office:
   description:
   active: true
 
-gun:
+weapon:
   category_type: Property
   name: Weapon
   description:

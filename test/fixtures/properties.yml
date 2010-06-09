@@ -1,15 +1,46 @@
 prop1:
-  category: gun
+  category: weapon
   value: 342.99
   description: Glock 9mm, rough condition, serial number filed off.
 
 prop2:
-  category: gun
+  category: weapon
   value: 9945
   description: Rare Glock 11.5mm, new condition, found on body.
 
-prop2:
+prop3:
   category: drug
   description: small baggie of marijuana
   
+prop4:
+  category: drug
+  description: large baggie of marijuana
+
+prop5:
+  category: drug
+  description: medium baggie of marijuana
+
+prop6:
+  category: drug
+  description: 2 pot plants
+
+prop7:
+  category: drug
+  description: 16 joints in a cigarette case
+
+prop8:
+  category: weapon
+  description: 12g shotweapon
+
+prop9:
+  category: weapon
+  description: 22 pistol, black, new condition
+
+prop10:
+  category: weapon
+  description: AK47 in case
+
+prop11:
+  category: weapon
+  description: 2 boxes of 12g shotweapon ammo
 

@@ -8,6 +8,7 @@ class CreateVehicles < ActiveRecord::Migration
       t.string  :reg_number
       t.string  :reg_state
       t.integer :year
+      t.text    :description
 
       t.boolean :active
 
