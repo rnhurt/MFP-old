@@ -1,15 +1,28 @@
 <% form_for @vehicle do |f| %>
   <%= f.error_messages %>
 
-  <%= f.label :vin, 'VIN' %>
-  <%= f.text_field :vin, :title => '', :size => 20 %>
+  <%= f.label :vin, 'ID' %>
+  <%= f.text_field :vin, :title => 'VIN', :size => 20 %>
+  <%= f.text_field :reg_number, :title => 'reg number', :size => 20 %>
+  <%= f.text_field :reg_state, :title => 'reg state', :size => 20 %>
+
 
   <div class="clearfix">&nbsp;</div>
 
+  <%= f.label 'Details' %>
+  <%= f.text_field :make, :title => 'make', :size => 20 %>
+  <%= f.text_field :model, :title => 'model', :size => 20 %>
+  <%= f.text_field :year, :title => 'model year', :size => 20 %>
+  <%= f.text_field :color, :title => 'color', :size => 20 %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Description' %>
+  <%= f.text_area :description, :title => 'short description of the vehicle' %>
 
   <div class="clearfix">&nbsp;</div>
 
   <%= f.submit 'Save' %>
-  <%= link_to 'Cancel', people_path %>
+  <%= link_to 'Cancel', vehicles_path %>
 
 <% end %>

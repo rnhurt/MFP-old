@@ -2,6 +2,7 @@ class CreateCategories < ActiveRecord::Migration
   def self.up
     create_table :categories do |t|
       t.string  :category_type
+      t.string  :ncic_code
       t.string  :name
       t.string  :description
       
