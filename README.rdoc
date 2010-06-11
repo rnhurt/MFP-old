@@ -8,7 +8,7 @@
 * <b>Professional support:</b> http://KangarooBox.com/dingo
 
 == Requirements
-* Ruby v1.9.1
+* Ruby >= v1.8
 * Rails 2.3.5
 * Dependencies (aka Rails plugins):
 * will_paginate[http://github.com/mislav/will_paginate] - Most awesome pagination system for Ruby
