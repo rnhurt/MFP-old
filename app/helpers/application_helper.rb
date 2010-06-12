@@ -26,5 +26,9 @@ module ApplicationHelper
     return result
   end
 
+  # Dynamically insert Javascript into the document
+  def javascript(*files)
+    content_for(:footer) { javascript_include_tag(*files)}
+  end
 end
 

@@ -17,4 +17,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # By default, we want the user to see this page.
   map.root :controller => 'incidents', :action => 'redirect'
+
+  # Route the Javascript views
+  map.connect ':controller/:action.:format'
 end

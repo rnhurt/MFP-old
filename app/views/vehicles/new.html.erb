@@ -1,24 +1,27 @@
+<% javascript 'dynamic_vmodels' %>
+
 <% form_for @vehicle do |f| %>
   <%= f.error_messages %>
 
   <%= f.label :vin, 'ID' %>
   <%= f.text_field :vin, :title => 'VIN', :size => 20 %>
-  <%= f.text_field :reg_number, :title => 'reg number', :size => 20 %>
-  <%= f.text_field :reg_state, :title => 'reg state', :size => 20 %>
+  <%= f.text_field :reg_number, :title => 'Reg. Number', :size => 20 %>
+  <%= f.collection_select :reg_state, NcicCode.states, :code, :value, {:prompt => 'Reg. State'} %>
 
 
   <div class="clearfix">&nbsp;</div>
 
   <%= f.label 'Details' %>
-  <%= f.text_field :make, :title => 'make', :size => 20 %>
-  <%= f.text_field :model, :title => 'model', :size => 20 %>
-  <%= f.text_field :year, :title => 'model year', :size => 20 %>
-  <%= f.text_field :color, :title => 'color', :size => 20 %>
+  <%= f.collection_select :make, NcicCode.vehicle_makes, :code, :value, {:prompt => 'Make'} %>
+  <%= f.collection_select :model, NcicCode.vehicle_models, :id, :value, {:prompt => 'Model'} %>
+  <%#= f.text_field :year, :title => 'model year', :size => 20 %>
+  <%= f.select(:year, Time.now.year.downto(1900), :selected=>(f.object.year || Time.now.year)) %>
+  <%= f.collection_select :color, NcicCode.vehicle_colors, :code, :value, {:prompt => 'Color'} %>
 
   <div class="clearfix">&nbsp;</div>
 
   <%= f.label 'Description' %>
-  <%= f.text_area :description, :title => 'short description of the vehicle' %>
+  <%= f.text_area :description, :rows => 10, :cols => 80, :class => 'wysiwyg' %>
 
   <div class="clearfix">&nbsp;</div>
 

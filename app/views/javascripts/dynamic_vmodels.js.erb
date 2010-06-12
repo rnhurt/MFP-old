@@ -1,0 +1,20 @@
+var models = new Array();
+<% @models.each do |model| -%>
+  models.push(new Array('<%= model.code %>', '<%= escape_javascript(model.value) %>', <%= model.id %>));
+<% end -%>
+
+function makeSelected() {
+  make_id = $('#vehicle_make').val();
+  options = [];
+  options.push(Option('Model', ''));
+  $.each(models, function(index, model) {
+    if (model[0] == make_id) {
+      options.push(Option(model[1], model[2]));
+    }
+  });
+  $('#vehicle_model').html(options);
+}
+
+$(function() {
+  $('#vehicle_make').change(makeSelected);
+});

@@ -71,3 +71,12 @@ open(File.join(Rails.root, 'db', 'seeds', 'NCICHairColorCodes.txt')) do |codes|
     NcicCode.create!(:code_type => 'HColor', :code => code, :value => value)
   end
 end
+
+puts '... NCIC VEHICLE COLOR codes...'
+NcicCode.vehicle_colors.delete_all
+open(File.join(Rails.root, 'db', 'seeds', 'NCICVehicleColorCodes.txt')) do |codes|
+  codes.read.each_line do |code_line|
+    code, value = code_line.chomp.split("|")
+    NcicCode.create!(:code_type => 'VColor', :code => code, :value => value)
+  end
+end

@@ -18,7 +18,7 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(params[:vehicle])
 
     if @vehicle.save
-      flash[:notice] = "'#{@vehicle.vin}' was successfully inserted into the system."
+      flash[:notice] = "The vehicle was successfully inserted into the system."
       redirect_to :action => :index
     else
       render :action => :new
@@ -33,10 +33,10 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.find(params[:id])
 
     if @vehicle.update_attributes(params[:vehicle])
-      flash[:notice] = "'#{@vehicle.vin}' was successfully updated."
+      flash[:notice] = "The vehicle was successfully updated."
       redirect_to :action => :index
     else
-      flash[:error] = "'#{@vehicle.vin}' failed to update."
+      flash[:error] = "The vehicle failed to update."
       redirect_to :action => :edit
     end
   end
