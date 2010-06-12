@@ -1,1 +1,18 @@
-<h1>Report information goes here</h1>
+<% javascript 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAoUvHeNkCqYkSSmszSlvcPRQDfsbzWxkJZPiM3BNlq1x21MI7KxQvtU97KgACuntswUmuPbsv57hFsA' %>
+<% javascript 'http://mapstraction.com/src/mapstraction.js' %>
+<% javascript 'http://mapstraction.com/src/mapstraction-geocode.js' %>
+<% javascript 'incident_map' %>
+
+
+<%#
+chart = GoogleChart.pie_400x200(Hash[@incident_counts.map{|i| [i[0], i[1]]}])
+chart.title = 'Incidents by type'
+chart.colors = '346090'
+%>
+
+<%#= image_tag chart.to_url,
+  :class => 'ui-widget ui-widget-content ui-corner-all',
+  :style => 'margin:10px;padding:10px;'
+%>
+
+<div id="mapstraction" style="height:400px;"></div>

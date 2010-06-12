@@ -10,7 +10,7 @@
       'demo_table_jui.css','jquery.wysiwyg',
       'timepicker_plug' ,'main' -%>
 
-    <%= @content_for_page_header -%>
+    <%= yield(:head) -%>
   </head>
 
   <body>
@@ -27,7 +27,7 @@
         </div>
         <a href="/"><h1>Dingo - Law Enforcement RMS</h1></a>
       </div>
-      
+
       <div id='flash'><%= show_flash %></div>
 
       <div class='ui-tabs ui-widget ui-widget-content ui-corner-all'>

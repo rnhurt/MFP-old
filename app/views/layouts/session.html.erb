@@ -10,7 +10,7 @@
         'demo_table_jui.css','jquery.wysiwyg',
         'timepicker_plug' ,'main', :cache => '../system/all' -%>
 
-    <%= @content_for_page_header -%>
+    <%= yield(:head) -%>
   </head>
 
   <body>

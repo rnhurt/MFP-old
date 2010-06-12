@@ -7,7 +7,9 @@ namespace :db do
     [Incident, Person, Vehicle, Location].each(&:delete_all)
     
     Incident.populate 200 do |incident|
-      incident.number   = Faker.numerify('######-######')
+      incident.number         = Faker.numerify('######-######')
+      incident.category_id    = ['210644801','210644801','210644801','388522865','506535473','965268229']
+
       incident.cleared_at     = 5.years.ago..5.days.ago
       incident.arrived_at     = incident.cleared_at - 2.hours
       incident.dispatched_at  = incident.arrived_at - 1.hour
