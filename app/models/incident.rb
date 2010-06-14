@@ -7,14 +7,13 @@ class Incident < ActiveRecord::Base
   has_many  :properties,  :through => :involvements
 
   belongs_to  :location
-  belongs_to  :category
+  belongs_to  :offence
 
   # Validations
   validates_length_of     :number, :minimum => 1
   validates_uniqueness_of :number, :message => "has already been used.  Please enter a different number or edit the correct incident."
 
-  
-  # Show the most recently dispatched incidents
+ 
   named_scope :recent, :order => 'dispatched_at DESC', :limit => 10
 
   

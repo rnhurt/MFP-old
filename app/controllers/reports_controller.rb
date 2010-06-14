@@ -1,7 +1,8 @@
 class ReportsController < ApplicationController
 
   def index
-    @incident_counts = Incident.connection.execute("select categories.name, count(*) count from categories INNER JOIN incidents ON incidents.category_id = categories.id GROUP BY categories.id")
+    @incident_types = Incident.connection.execute("SELECT codes.value, count(*) count FROM codes INNER JOIN incidents ON incidents.offence_id = codes.id GROUP BY codes.id ORDER BY count DESC")
+    @incident_years = Incident.connection.execute("SELECT strftime('%Y',updated_at), count(*) count from incidents GROUP BY  strftime('%Y',updated_at) ORDER BY strftime('%Y',updated_at) DESC;")
 
     #    @flot = Flot.new('graph') do |f|
     #      f.series("Line One", [[1,9], [2,18], [3,36], [4,26]])

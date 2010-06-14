@@ -5,7 +5,8 @@ class JavascriptsController < ApplicationController
   end
 
   def incident_map
-    @locations = Location.all
+    # Get the locations of the most recent incidents
+    @locations = Incident.recent.collect{|i| i.location}
   end
 
 end

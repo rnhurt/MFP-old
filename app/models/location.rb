@@ -1,11 +1,13 @@
 class Location < ActiveRecord::Base
-  # Associations
   has_many    :involvements
   has_many    :people, :through => :involvements
   has_many    :incidents
 
-  # Methods
-  def address
+
+  named_scope :recent, :order => 'updated_at DESC', :limit => 10
+
+
+  def street
     return "#{self.street_number} #{self.street_name}"
   end
 

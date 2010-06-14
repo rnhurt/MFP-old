@@ -7,14 +7,14 @@ class CreatePeople < ActiveRecord::Migration
       t.string  :last_name
       t.string  :ssn
       t.date    :dob
-      t.string  :race
-      t.string  :gender
+      t.integer :race_id
+      t.integer :gender_id
       t.integer :height
       t.integer :weight
-      t.string  :eyecolor
-      t.string  :haircolor
+      t.integer :eyecolor_id
+      t.integer :haircolor_id
       t.string  :ol_number
-      t.string  :ol_state
+      t.integer :ol_state_id
 
       t.boolean :active
       

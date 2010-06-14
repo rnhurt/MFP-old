@@ -4,8 +4,9 @@ class Vehicle < ActiveRecord::Base
   has_many  :involvements
   has_many  :incidents, :through => :involvements
 
-  # Show the most recently edited records
+  named_scope :active, :conditions => {:active => true}
   named_scope :recent, :order => 'updated_at DESC', :limit => 10
+
 
   def self.search(term)
     search = "%#{term}%"

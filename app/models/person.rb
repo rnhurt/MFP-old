@@ -6,6 +6,11 @@ class Person < ActiveRecord::Base
   has_many    :incidents, :through => :involvements
   has_many    :locations, :through => :involvements
 
+  belongs_to  :race
+  belongs_to  :gender
+  belongs_to  :hair_color
+  belongs_to  :eye_color
+  belongs_to  :state
 
   # Show the most recently edited records
   named_scope :recent, :order => 'updated_at DESC', :limit => 10

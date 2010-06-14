@@ -4,15 +4,29 @@
 <% javascript 'incident_map' %>
 
 
-<%#
-chart = GoogleChart.pie_400x200(Hash[@incident_counts.map{|i| [i[0], i[1]]}])
-chart.title = 'Incidents by type'
-chart.colors = '346090'
+<%
+# Make a Pie chart out of the most frequent offenses
+top5chart = GoogleChart.pie_697x200(Hash[@incident_types[0..4].collect{|i| [i[0], i[1]]}])
+top5chart.title = 'Top 5 Offences'
+top5chart.colors = '346090'
 %>
 
-<%#= image_tag chart.to_url,
+<%
+# Make a Pie chart out of the most frequent offenses
+fullchart = GoogleChart.bar_vertical_stacked_170x200(Hash[@incident_years[0..5].collect{|i| [i[0], i[1]]}])
+fullchart.title = 'Trending by Year'
+fullchart.colors = '346090'
+%>
+
+
+<%= image_tag top5chart.to_url,
   :class => 'ui-widget ui-widget-content ui-corner-all',
-  :style => 'margin:10px;padding:10px;'
+  :style => 'margin:2px;padding:5px;'
 %>
 
-<div id="mapstraction" style="height:400px;"></div>
+<%= image_tag fullchart.to_url,
+  :class => 'ui-widget ui-widget-content ui-corner-all',
+  :style => 'margin:2px;padding:5px;'
+%>
+
+<div id="map_canvas" class="ui-widget ui-widget-content ui-corner-all" style="height:400px;"></div>
