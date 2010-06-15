@@ -4,8 +4,14 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Incident, Person, Vehicle, Location].each(&:delete_all)
-        
+    [Incident, Person, Vehicle, Location, Property].each(&:delete_all)
+
+    Property.populate 10 do |property|
+
+
+
+    end
+    
     Location.populate 200 do |location|
       location.street_number  = Faker.numerify(['###', '####', '#####'].rand)
       location.street_name    = ['Oak St.', 'First St.', 'Main St.', 'Park St.', 'Dixie Hwy.', 'Fourth St.', '3rd St.']

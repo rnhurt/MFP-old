@@ -8,8 +8,8 @@
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label :category %>
-  <%= collection_select :incident, :category_id, Category.incidents.active, :id, :name, :include_blank => true %>
+  <%#= f.label :category %>
+  <%#= collection_select :incident, :category_id, Category.incidents.active, :id, :name, :include_blank => true %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
   <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>

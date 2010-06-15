@@ -83,3 +83,12 @@ open(File.join(Rails.root, 'db', 'seeds', 'NCICGenderCodes.txt')) do |codes|
     Gender.create!(:code => code, :value => value, :active => true)
   end
 end
+
+puts '... NCIC CATEGORY codes...'
+Category.delete_all
+open(File.join(Rails.root, 'db', 'seeds', 'NCICCategoryCodes.txt')) do |codes|
+  codes.read.each_line do |code_line|
+    code, value = code_line.chomp.split("|")
+    Category.create!(:code => code, :value => value, :active => true)
+  end
+end
