@@ -1,0 +1,22 @@
+  <table class="dataTable">
+    <thead>
+      <tr>
+        <th>Street #</th>
+        <th>Street Name</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr>
+          <%= content_tag :td, (link_to location.street_number, {:action => 'edit', :id => location}) %>
+          <%= content_tag :td, location.street_name %>
+          <%= content_tag :td, location.city %>
+          <%= content_tag :td, location.state %>
+          <%= content_tag :td, location.postal_code %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

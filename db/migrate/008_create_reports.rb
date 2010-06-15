@@ -1,6 +1,6 @@
-class CreateIncidents < ActiveRecord::Migration
+class CreateReports < ActiveRecord::Migration
   def self.up
-    create_table :incidents do |t|
+    create_table :reports do |t|
       t.string    :number,  :null => false
       t.integer   :offence_id
       t.integer   :location_id
@@ -16,10 +16,10 @@ class CreateIncidents < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :incidents, :number, :unique => true
+    add_index :reports, :number, :unique => true
   end
 
   def self.down
-    drop_table :incidents
+    drop_table :reports
   end
 end

@@ -1,17 +1,17 @@
 <table class="dataTable">
   <thead>
     <tr>
-      <th>Category</th>
       <th>Value</th>
       <th>Description</th>
+      <th>Type</th>
     </tr>
   </thead>
   <tbody>
     <% @properties.each do |property| %>
       <tr>
-        <%= content_tag :td, (link_to property.category.name, {:action => 'edit', :id => property}) %>
-        <%= content_tag :td, number_to_currency(property.value) %>
-        <%= content_tag :td, property.description %>
+        <%= content_tag :td, number_to_currency(property.value), :class => 'money' %>
+        <%= content_tag :td, (link_to property.description, {:action => 'edit', :id => property}) %>
+        <%= content_tag :td, property.property_type.value %>
       </tr>
     <% end %>
   </tbody>

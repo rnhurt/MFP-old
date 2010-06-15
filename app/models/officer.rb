@@ -1,6 +1,6 @@
 class Officer < ActiveRecord::Base
   has_many  :involvements
-  has_many  :incidents, :through => :incidents
+  has_many  :reports, :through => :reports
 
   # Methods
   def full_name

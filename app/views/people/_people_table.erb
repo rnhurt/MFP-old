@@ -2,7 +2,9 @@
   <thead>
     <tr>
       <th width="100">SSN</th>
-      <th>Name</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Last Name</th>
       <th>DOB</th>
     </tr>
   </thead>
@@ -10,9 +12,11 @@
     <% @people.each do |person| %>
       <tr>
         <%= content_tag :td, (link_to person.ssn, {:action => 'edit', :id => person}) %>
-        <%= content_tag :td, (link_to person.full_name, {:action => 'edit', :id => person}) %>
+        <%= content_tag :td, person.first_name %>
+        <%= content_tag :td, person.middle_name %>
+        <%= content_tag :td, person.last_name %>
         <% if person.dob %>
-          <%= content_tag :td, person.dob.strftime("%B %d, %Y") %>
+          <%= content_tag :td, person.dob.strftime("%m/%d/%Y") %>
         <% else %>
           <td></td>
         <% end %>

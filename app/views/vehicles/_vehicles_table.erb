@@ -15,10 +15,10 @@
         <td>
         <%= link_to (vehicle.vin.nil? ? '[edit]' : vehicle.vin), {:action => 'edit', :id => vehicle} %>
         </td>
-        <%= content_tag :td, vehicle.make %>
-        <%= content_tag :td, vehicle.model %>
+        <%= content_tag :td, vehicle.vehicle_make.value %>
+        <%= content_tag :td, vehicle.vehicle_model.value %>
         <%= content_tag :td, vehicle.year %>
-        <%= content_tag :td, vehicle.color %>
+        <%= content_tag :td, vehicle.vehicle_color.value %>
         <%= content_tag :td, truncate(vehicle.description, {:length => 150}) %>
       </tr>
     <% end %>

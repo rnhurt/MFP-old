@@ -4,12 +4,14 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Incident, Person, Vehicle, Location, Property].each(&:delete_all)
+    [Property, Location, Vehicle, Person, Report].each(&:delete_all)
 
+    property_types = PropertyType.active.collect{|p| p.id}
+    
     Property.populate 10 do |property|
-
-
-
+      property.property_type_id = property_types
+      property.value            = Faker.numerify(['###.##', '####.##', '#####.##'].rand)
+      property.description      = Populator.words(5)
     end
     
     Location.populate 200 do |location|
@@ -25,13 +27,15 @@ namespace :db do
     vehicle_colors  = VehicleColor.active.collect{|v| v.id}
 
     Vehicle.populate 200 do |vehicle|
-      vehicle.vin   = Faker.numerify('###################')
-      vehicle.make  = vehicle_makes
-      vehicle.model = vehicle_models
-      vehicle.color = vehicle_colors
-      vehicle.year  = 1901..Time.now.year + 1
+      vehicle.vin         = Faker.numerify('###################')
+      vehicle.vehicle_make_id     = vehicle_makes
+      vehicle.vehicle_model_id    = vehicle_models
+      vehicle.vehicle_color_id    = vehicle_colors
+      vehicle.year        = 1901..Time.now.year + 1
       vehicle.reg_number  = Faker.numerify('###-###')
       vehicle.reg_state   = Faker::Address.us_state_abbr
+      vehicle.description = Populator.words(5)
+
       vehicle.active      = ['T','T','T','T','T','T','F']
 
       vehicle.created_at = 5.years.ago..Time.now
@@ -54,6 +58,7 @@ namespace :db do
       Person.populate 1..10 do |person|
         person.person_master_id  = personmaster.id
         person.first_name   = Faker::Name.first_name
+        person.middle_name  = Faker::Name.first_name
         person.last_name    = last_name
         person.ssn          = Faker.numerify('###-##-####')
         person.gender_id    = gender
@@ -75,18 +80,18 @@ namespace :db do
     offences = %w(279 303 327 206 213 123 148 179 188)
     locations = Location.all.collect{|l| l.id}
 
-    Incident.populate 200 do |incident|
-      incident.number       = Faker.numerify('######-######')
-      incident.offence_id   = offences
-      incident.location_id  = locations
+    Report.populate 200 do |report|
+      report.number       = Faker.numerify('######-######')
+      report.offence_id   = offences
+      report.location_id  = locations
 
-      incident.cleared_at     = 5.years.ago..5.days.ago
-      incident.arrived_at     = incident.cleared_at - 2.hours
-      incident.dispatched_at  = incident.arrived_at - 1.hour
-      incident.narrative      = Populator.paragraphs(3)
+      report.cleared_at     = 5.years.ago..5.days.ago
+      report.arrived_at     = report.cleared_at - 2.hours
+      report.dispatched_at  = report.arrived_at - 1.hour
+      report.narrative      = Populator.paragraphs(3)
 
-      incident.created_at = incident.cleared_at + 5.hours
-      incident.updated_at = incident.created_at
+      report.created_at = report.cleared_at + 5.hours
+      report.updated_at = report.created_at
     end
  
   end

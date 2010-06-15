@@ -2,9 +2,9 @@ class CreateVehicles < ActiveRecord::Migration
   def self.up
     create_table :vehicles do |t|
       t.string  :vin
-      t.string  :color
-      t.string  :make
-      t.string  :model
+      t.integer :vehicle_color_id
+      t.integer :vehicle_make_id
+      t.integer :vehicle_model_id
       t.string  :reg_number
       t.string  :reg_state
       t.integer :year

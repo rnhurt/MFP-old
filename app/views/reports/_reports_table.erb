@@ -1,0 +1,20 @@
+  <table class="dataTable">
+    <thead>
+      <tr>
+        <th>Report #</th>
+        <th>Offence</th>
+        <th>Date</th>
+        <th>Narrative</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reports.each do |report| %>
+        <tr>
+          <%= content_tag :td, (link_to report.number, {:action => 'edit', :id => report}) %>
+          <%= content_tag :td, report.offence.value %>
+          <%= content_tag :td, report.dispatched_at.strftime("%m/%d/%Y") %>
+          <%= content_tag :td, truncate(report.narrative, {:length => 150}) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

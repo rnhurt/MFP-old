@@ -1,3 +1,3 @@
 class Offence < Code
-  has_many    :incidents
+  has_many    :reports
 end

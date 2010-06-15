@@ -24,7 +24,9 @@ input.blur, textarea.blur {color:#999999;}
 .ui-icon {float:right;}
 
 table { width:100%; }
+table tr .money { text-align: right;}
 .wysiwyg { display:inline-block; }
+
 
 #flash { margin:auto; text-align:center }
 

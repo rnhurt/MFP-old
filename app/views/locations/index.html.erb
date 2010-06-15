@@ -1,0 +1,15 @@
+<% form_for :location, :action => :new, :html => { :method => :get } do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= f.text_field 'term', :class => 'search focus', 'data-search-url' => search_locations_path %>
+  <%= f.submit 'Search for an existing location', :id => 'location_search', :name => 'search' %>
+  <%= f.submit 'Enter a new location', :id => 'location_new', :name => 'new' %>
+
+  <hr class="clearfix" />
+
+  <div id="locations">
+    <%= render 'locations_table' %>
+  </div>
+  
+<% end %>

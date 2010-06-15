@@ -1,4 +1,4 @@
-class Incident < ActiveRecord::Base
+class Report < ActiveRecord::Base
   # Associations
   has_many  :involvements
   has_many  :officers,    :through => :involvements
@@ -11,7 +11,7 @@ class Incident < ActiveRecord::Base
 
   # Validations
   validates_length_of     :number, :minimum => 1
-  validates_uniqueness_of :number, :message => "has already been used.  Please enter a different number or edit the correct incident."
+  validates_uniqueness_of :number, :message => "has already been used.  Please enter a different number or edit the correct report."
 
  
   named_scope :recent, :order => 'dispatched_at DESC', :limit => 10

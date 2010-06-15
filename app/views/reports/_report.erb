@@ -1,15 +1,18 @@
-<%#= render 'incident' %>
+<% current_date = DateTime.now %>
 
-<% form_for @incident do |f| %>
+<% form_for :report do |f| %>
   <%= f.error_messages %>
 
-  <%= f.label :number, 'Incident #' %>
+  <%= f.label :number, 'Report #' %>
   <%= f.text_field :number, :disabled => true %>
+  <%#= f.text_field :number, :title => 'report-1001', :class => 'autocomplete',
+    'data-autocomplete-url' => 'incidents.js' %>
+  <%= f.submit 'Create New' if !@report || @report.new_record? %>
 
-  <div class="clearfix">&nbsp;</div>
+  <hr />
 
-  <%#= f.label :category %>
-  <%#= collection_select :incident, :category_id, Category.incidents.active, :id, :name, :include_blank => true %>
+  <%= f.label :offence %>
+  <%= select :offence, Offence.active.map{|i| [i.name, i.id]}, {:include_blank => ''} %>
   <%= f.label :arrived_at, 'Times' %>
   <%= f.text_field :dispatched_at, :size => 12, :class => 'datepicker', :title => 'dispatched at' %>
   <%= f.text_field :arrived_at, :size => 12, :class => 'datepicker', :title => 'arrived at' %>
@@ -17,8 +20,8 @@
 
   <div class="clearfix">&nbsp;</div>
 
-  <label>Involved Persons</label>
-  <table class="dataTable">
+  <label>Persons</label>
+  <table>
     <thead>
       <tr>
         <th>First Name</th>
@@ -28,20 +31,21 @@
       </tr>
     </thead>
     <tbody>
-      <% @incident.people.each do |p| %>
+      <% @report.people.each do |p| %>
         <tr>
           <%= content_tag :td, p.first_name %>
           <%= content_tag :td, p.last_name %>
-          <%= content_tag :td, p.locations.first ? p.locations.first.address : '' %>
+          <%= content_tag :td, p.address %>
           <td></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+
   <div class="clearfix">&nbsp;</div>
 
   <label>Officers</label>
-  <table class="dataTable">
+  <table>
     <thead>
       <tr>
         <th>Badge #</th>
@@ -49,18 +53,19 @@
       </tr>
     </thead>
     <tbody>
-      <% @incident.officers.each do |o| %>
-          <%= content_tag :td, o.badge %>
-          <%= content_tag :td, o.full_name %>
+      <%# @report.officers.each do |o| %>
+      <tr><td></td><td></td>
+          <%#= content_tag :td, o.badge %>
+          <%#= content_tag :td, o.full_name %>
         </tr>
-      <% end %>
+      <%# end %>
     </tbody>
   </table>
 
   <div class="clearfix">&nbsp;</div>
 
   <label>Vehicles</label>
-  <table class="dataTable">
+  <table>
     <thead>
       <tr>
         <th>VIN</th>
@@ -72,15 +77,15 @@
       </tr>
     </thead>
     <tbody>
-      <% @incident.vehicles.each do |v| %>
-        <tr>
-          <%= content_tag :td, v.vin %>
-          <%= content_tag :td, v.year %>
-          <%= content_tag :td, v.make %>
-          <%= content_tag :td, v.model %>
-          <%= content_tag :td, v.color %>
-          <%= content_tag :td, "#{v.reg_number} (#{v.reg_state})" %>
-        </tr>
+      <% @report.vehicles.each do |v| %>
+      <tr>
+        <%= content_tag :td, v.vin %>
+        <%= content_tag :td, v.year %>
+        <%= content_tag :td, v.make %>
+        <%= content_tag :td, v.model %>
+        <%= content_tag :td, v.color %>
+        <%= content_tag :td, v.license %>
+      </tr>
       <% end %>
     </tbody>
   </table>
@@ -88,7 +93,7 @@
   <div class="clearfix">&nbsp;</div>
 
   <label>Property</label>
-  <table class="dataTable">
+  <table>
     <thead>
       <tr>
         <th>Type</th>
@@ -96,11 +101,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @incident.properties.each do |p| %>
-        <tr>
-          <%= content_tag :td, p.category.name %>
-          <%= content_tag :td, p.description %>
-        </tr>
+      <% @report.properties.each do |p| %>
+      <tr>
+        <%= content_tag :td, p.type %>
+        <%= content_tag :td, p.description %>
+      </tr>
       <% end %>
     </tbody>
   </table>
@@ -108,12 +113,11 @@
   <div class="clearfix">&nbsp;</div>
 
   <%= f.label :narrative %>
-  <%= f.text_area :narrative, :rows => 10, :cols => 80, :title => 'Describe the incident here...', :class => 'wysiwyg' %>
+  <%= f.text_area :narrative, :rows => 10, :cols => 80, :title => 'Describe the report here...' %>
 
   <div class="clearfix">&nbsp;</div>
 
   <%= f.submit 'Save' %>
-  <%= link_to 'Cancel', incidents_path %>
-
-  <hr />
 <% end %>
+
+

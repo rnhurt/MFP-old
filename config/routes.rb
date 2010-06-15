@@ -8,15 +8,16 @@ ActionController::Routing::Routes.draw do |map|
 
   # Standard routes
   map.resources :user_sessions
-  map.resources :people,    :collection => { :search => :get}
-  map.resources :incidents, :collection => { :search => :get}
-  map.resources :vehicles,  :collection => { :search => :get}
-  map.resources :properties,:collection => { :search => :get}
-  map.resources :reports,   :collection => { :search => :get}
+  map.resources :people,          :collection => { :search => :get}
+  map.resources :reports,         :collection => { :search => :get}
+  map.resources :vehicles,        :collection => { :search => :get}
+  map.resources :properties,      :collection => { :search => :get}
+  map.resources :locations,       :collection => { :search => :get}
+  map.resources :crime_analysis,  :collection => { :search => :get}
   map.resources :admin
 
   # By default, we want the user to see this page.
-  map.root :controller => 'incidents', :action => 'redirect'
+  map.root :controller => 'reports', :action => 'redirect'
 
   # Route the Javascript views
   map.connect ':controller/:action.:format'

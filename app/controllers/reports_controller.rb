@@ -1,8 +1,52 @@
 class ReportsController < ApplicationController
 
   def index
-    @incident_types = Incident.connection.execute("SELECT codes.value, count(*) count FROM codes INNER JOIN incidents ON incidents.offence_id = codes.id GROUP BY codes.id ORDER BY count DESC")
-    @incident_years = Incident.connection.execute("SELECT strftime('%Y',updated_at), count(*) count from incidents GROUP BY  strftime('%Y',updated_at) ORDER BY strftime('%Y',updated_at) DESC;")
+    if params[:new]
+      redirect_to :action => :new
+    elsif params[:report]
+      @reports = Report.search(params[:report][:term])
+    else
+      @reports = Report.recent
+    end
+  end
+
+  def new
+    @report = Report.new
+  end
+
+  def create
+    @report = Report.new(params[:report])
+
+    if @report.save
+      flash[:notice] = "'#{@report.number}' was successfully inserted into the system."
+      redirect_to :action => :index
+    else
+      render :action => :new
+    end
+  end
+
+  def edit
+    @report = Report.find(params[:id])
+  end
+
+  def update
+    @report = Report.find(params[:id])
+
+    if @report.update_attributes(params[:report])
+      flash[:notice] = "'#{@report.full_name}' was successfully updated."
+      redirect_to :action => :index
+    else
+      flash[:error] = "'#{@report.full_name}' failed to update."
+      redirect_to :action => :edit
+    end
+  end
+
+  def redirect
+    redirect_to :action => :index
+  end
+
+  def search
+    @reports = Report.search(params[:term])
   end
 
 end

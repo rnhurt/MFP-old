@@ -3,7 +3,7 @@ class Person < ActiveRecord::Base
   has_many    :aliases, :through => :person_master
 
   has_many    :involvements
-  has_many    :incidents, :through => :involvements
+  has_many    :reports, :through => :involvements
   has_many    :locations, :through => :involvements
 
   belongs_to  :race

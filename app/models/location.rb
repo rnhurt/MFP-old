@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
   has_many    :involvements
   has_many    :people, :through => :involvements
-  has_many    :incidents
+  has_many    :reports
 
 
   named_scope :recent, :order => 'updated_at DESC', :limit => 10
@@ -13,6 +13,12 @@ class Location < ActiveRecord::Base
 
   def full_address
     return "#{self.street_number} #{self.street_name}  #{self.city}, #{self.state}  #{self.postal_code}"
+  end
+
+  def self.search(raw_term)
+    term = "%#{raw_term}%"
+    self.find(:all, :conditions => ['street_number LIKE ? OR street_name LIKE ? OR city LIKE ? OR postal_code LIKE ?',
+        term, term, term, term])
   end
 
 end

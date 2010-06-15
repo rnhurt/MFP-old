@@ -1,8 +1,8 @@
 class CreateProperties < ActiveRecord::Migration
   def self.up
     create_table :properties do |t|
-      t.string  :category_id
-      t.integer :value
+      t.integer :property_type_id
+      t.decimal :value, :precision => 8, :scale => 2
       t.string  :description
 
       t.boolean :active
