@@ -6,14 +6,14 @@
 
 <%
 # Make a Pie chart out of the most frequent offenses
-top5chart = GoogleChart.pie_697x200(Hash[@report_types[0..4].collect{|i| [i[0], i[1]]}])
+top5chart = GoogleChart.pie_697x200(Hash[@offence_counts[0..4].collect{|i| [i.value, i.count]}])
 top5chart.title = 'Top 5 Offences'
 top5chart.colors = '346090'
 %>
 
 <%
 # Make a Pie chart out of the most frequent offenses
-fullchart = GoogleChart.bar_vertical_stacked_170x200(Hash[@report_years[0..5].collect{|i| [i[0], i[1]]}])
+fullchart = GoogleChart.bar_vertical_stacked_170x200(Hash[@report_counts_by_year[0..5].collect{|i| [i.updated_at.year, i.count]}])
 fullchart.title = 'Trending by Year'
 fullchart.colors = '346090'
 %>
