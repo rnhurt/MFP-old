@@ -8,13 +8,15 @@ class Vehicle < ActiveRecord::Base
   belongs_to  :vehicle_color
 
   named_scope :active, :conditions => {:active => true}
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
+  named_scope :recent, :include => [:vehicle_make, :vehicle_model, :vehicle_color],
+    :order => 'updated_at DESC', :limit => 10
 
 
-  def self.search(term)
-    search = "%#{term}%"
-    self.find(:all, :conditions => ["vin LIKE ? OR make LIKE ? OR model LIKE ? OR year LIKE ? OR color LIKE ?",
-        search, search, search, search, search])
+  def self.search(search_term)
+    term = "%#{search_term}%"
+    self.find(:all, :include => [:vehicle_make, :vehicle_model, :vehicle_color],
+        :conditions => ["vin LIKE ? OR year LIKE ?",
+        term, term])
   end
 
 end
