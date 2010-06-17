@@ -1,17 +1,16 @@
 class CrimeAnalysisController < ApplicationController
-
+  
   def index
     @offence_counts = Offence.find(:all, :joins => :reports,  
-      :select => 'codes.*, count(*) AS count', 
+      :select => 'codes.value, count(*) AS count',
       :group => 'codes.value',
       :order => 'count DESC')
-    @report_years = Report.connection.execute("SELECT strftime('%Y',updated_at), count(*) AS count from reports GROUP BY  strftime('%Y',updated_at) ORDER BY strftime('%Y',updated_at) DESC;")
-    # FIXME: Postgres syntax = SELECT extract(year FROM updated_at) AS year, count(*) AS count from reports GROUP BY year ORDER BY year DESC;
 
-    @report_counts_by_year = Offence.find(:all, :joins => :reports,
-      :select => 'codes.*, count(*) AS count',
-      :group => 'updated_at',
-      :order => 'count DESC')
+    @report_counts_by_year = []
+    (3).downto 0 do |i|
+      blah = Time.now - i.years
+      @report_counts_by_year << [blah.year, Report.count(:all, :conditions => { :updated_at => blah.beginning_of_year..blah.end_of_year })]
+    end
   end
 
 end

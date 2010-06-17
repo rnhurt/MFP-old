@@ -13,11 +13,10 @@ top5chart.colors = '346090'
 
 <%
 # Make a Pie chart out of the most frequent offenses
-fullchart = GoogleChart.bar_vertical_stacked_170x200(Hash[@report_counts_by_year[0..5].collect{|i| [i.updated_at.year, i.count]}])
-fullchart.title = 'Trending by Year'
+fullchart = GoogleChart.bar_vertical_stacked_170x200(Hash[@report_counts_by_year])
+fullchart.title = "Reports / Year"
 fullchart.colors = '346090'
 %>
-
 
 <%= image_tag top5chart.to_url,
   :class => 'ui-widget ui-widget-content ui-corner-all',
