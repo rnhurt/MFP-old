@@ -1,11 +1,15 @@
 class Report < ActiveRecord::Base
   # Associations
-  has_many  :involvements
-  has_many  :officers,    :through => :involvements
-  has_many  :people,      :through => :involvements
-  has_many  :vehicles,    :through => :involvements
-  has_many  :properties,  :through => :involvements
+  has_many  :officer_involvements
+  has_many  :officers,    :through => :officer_involvements
 
+  has_many  :vehicle_involvements
+  has_many  :vehicles,  :through => :vehicle_involvements
+  
+  #  has_many  :people,      :through => :involvements
+  #  has_many  :vehicles,    :through => :involvements
+  #  has_many  :properties,  :through => :involvements
+  
   belongs_to  :location
   belongs_to  :offence
 

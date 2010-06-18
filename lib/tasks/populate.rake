@@ -4,7 +4,7 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Property, Location, Vehicle, Person, Report].each(&:delete_all)
+    [Property, Location, Vehicle, Person, Report, Involvement].each(&:delete_all)
 
     property_types = PropertyType.active.collect{|p| p.id}
     
@@ -76,7 +76,7 @@ namespace :db do
       end
     end
 
-    #    offences = Offence.all.collect{|c| c.id}
+    # Choose some 'normal' offences...
     offences = %w(279 303 327 206 213 123 148 179 188)
     locations = Location.all.collect{|l| l.id}
 
@@ -93,6 +93,9 @@ namespace :db do
       report.created_at = report.cleared_at + 5.hours
       report.updated_at = report.created_at
     end
- 
+
+#    Involvement.populate 2 do |involvement|
+#
+#    end
   end
 end

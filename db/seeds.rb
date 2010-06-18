@@ -92,3 +92,9 @@ open(File.join(Rails.root, 'db', 'seeds', 'NCICPropertyTypeCodes.txt')) do |code
     PropertyType.create!(:code => code, :value => value, :active => true)
   end
 end
+
+puts '... Officer Roles ...'
+OfficerRole.delete_all
+%w(Primary Secondary Backup).each do |role|
+  OfficerRole.create!(:value => role, :active => true)
+end
