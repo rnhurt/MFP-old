@@ -4,7 +4,7 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Property, Location, Vehicle, Person, Report, Involvement].each(&:delete_all)
+    [Property, Location, Vehicle, Person, Contact, Report, Involvement].each(&:delete_all)
 
     property_types = PropertyType.active.collect{|p| p.id}
     
@@ -76,10 +76,19 @@ namespace :db do
       end
     end
 
+
+    roles     = Role.contact.active.collect{|l| l.id}
+    people    = Person.all.collect{|l| l.id}
+    locations = Location.all.collect{|l| l.id}
+
+    Contact.populate 200 do |contact|
+      contact.person_id   = people
+      contact.location_id = locations
+      contact.role_id     = roles
+    end
+
     # Choose some 'normal' offenses...
     offenses = %w(279 303 327 206 213 123 148 179 188)
-    locations = Location.all.collect{|l| l.id}
-    persons = Person.all.collect{|l| l.id}
 
     Report.populate 200 do |report|
       report.number       = Faker.numerify('######-######')

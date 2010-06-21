@@ -5,7 +5,8 @@ class Person < ActiveRecord::Base
   has_many    :person_involvements, :foreign_key => 'involved_id'
   has_many    :reports, :through => :person_involvements
 
-#  has_many    :locations, :through => :involvements
+  has_many    :contacts
+  has_many    :locations, :through => :contacts
 
   belongs_to  :race
   belongs_to  :gender

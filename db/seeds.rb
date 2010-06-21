@@ -105,6 +105,12 @@ Role.person.delete_all
   Role.create!(:code => 'Person', :value => role, :active => true)
 end
 
+puts '... Contact Roles ...'
+Role.contact.delete_all
+%w(Home Work Office).each do |role|
+  Role.create!(:code => 'Contact', :value => role, :active => true)
+end
+
 puts '... Property Status ...'
 Status.delete_all
 %w(Stolen Recovered Seized Burned Destroyed Pawned Lost).each do |status|
