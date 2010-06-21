@@ -2,7 +2,7 @@ class CreateReports < ActiveRecord::Migration
   def self.up
     create_table :reports do |t|
       t.string    :number,  :null => false
-      t.integer   :offence_id
+      t.integer   :offense_id
       t.integer   :location_id
       t.date      :date
       t.timestamp :dispatched_at

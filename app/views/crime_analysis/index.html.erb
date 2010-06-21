@@ -1,13 +1,13 @@
-<%# javascript 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAoUvHeNkCqYkSSmszSlvcPRQDfsbzWxkJZPiM3BNlq1x21MI7KxQvtU97KgACuntswUmuPbsv57hFsA' %>
-<%# javascript 'http://mapstraction.com/src/mapstraction.js' %>
-<%# javascript 'http://mapstraction.com/src/mapstraction-geocode.js' %>
-<%# javascript 'incident_map' %>
+<% javascript 'http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAoUvHeNkCqYkSSmszSlvcPRQDfsbzWxkJZPiM3BNlq1x21MI7KxQvtU97KgACuntswUmuPbsv57hFsA' %>
+<% javascript 'mapstraction.js' %>
+<% javascript 'mapstraction-geocode.js' %>
+<% javascript 'incident_map' %>
 
 
 <%
 # Make a Pie chart out of the most frequent offenses
-top5chart = GoogleChart.pie_697x200(Hash[@offence_counts[0..4].collect{|i| [i.value, i.count]}])
-top5chart.title = 'Top 5 Offences'
+top5chart = GoogleChart.pie_697x200(Hash[@offense_counts[0..4].collect{|i| [i.value, i.count]}])
+top5chart.title = 'Top 5 Offenses'
 top5chart.colors = '346090'
 %>
 
@@ -28,7 +28,9 @@ fullchart.colors = '346090'
   :style => 'margin:2px;padding:5px;'
 %>
 
-<%= image_tag @map_url + '&size=900x400', :alt => 'Incident Map',
+<%#= image_tag @map_url + '&size=900x400', :alt => 'Incident Map',
   :class => 'ui-widget ui-widget-content ui-corner-all',
   :style => 'margin:2px;padding:5px;'
 %>
+
+<div id="map_canvas" style="margin:2px;padding:5px;height:400px;width:890px;" class="ui-widget ui-widget-content ui-corner-all"></div>

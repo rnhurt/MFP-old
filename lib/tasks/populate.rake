@@ -76,13 +76,14 @@ namespace :db do
       end
     end
 
-    # Choose some 'normal' offences...
-    offences = %w(279 303 327 206 213 123 148 179 188)
+    # Choose some 'normal' offenses...
+    offenses = %w(279 303 327 206 213 123 148 179 188)
     locations = Location.all.collect{|l| l.id}
+    persons = Person.all.collect{|l| l.id}
 
     Report.populate 200 do |report|
       report.number       = Faker.numerify('######-######')
-      report.offence_id   = offences
+      report.offense_id   = offenses
       report.location_id  = locations
 
       report.cleared_at     = 5.years.ago..5.days.ago
@@ -90,12 +91,29 @@ namespace :db do
       report.dispatched_at  = report.arrived_at - 1.hour
       report.narrative      = Populator.paragraphs(3)
 
+#      report.persons <<
+
       report.created_at = report.cleared_at + 5.hours
       report.updated_at = report.created_at
     end
 
-#    Involvement.populate 2 do |involvement|
-#
-#    end
+    
+    officers  = Officer.active.collect{|l| l.id}
+    reports   = Report.all.collect{|l| l.id}
+    roles     = Role.officer.active.collect{|l| l.id}
+
+    OfficerInvolvement.populate 200 do |oi|
+      oi.report_id    = reports
+      oi.involved_id  = officers
+      oi.role_id      = roles
+    end
+
+    vehicles  = Vehicle.all.collect{|l| l.id}
+    statuses  = Status.active.collect{|l| l.id}
+    VehicleInvolvement.populate 200 do |vi|
+      vi.report_id    = reports
+      vi.involved_id  = vehicles
+      vi.role_id      = statuses
+    end
   end
 end

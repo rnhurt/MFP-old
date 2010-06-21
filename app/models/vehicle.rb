@@ -1,7 +1,7 @@
 class Vehicle < ActiveRecord::Base
   #  load_and_authorize_resource
 
-  has_many    :vehicle_involvements
+  has_many    :vehicle_involvements, :foreign_key => 'involved_id'
   has_many    :reports, :through => :vehicle_involvements
 
   belongs_to  :vehicle_make

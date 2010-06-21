@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
+  named_scope :active, :conditions => {:active => true}
   named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
 
   ROLES = %w[admin chief officer secretary]

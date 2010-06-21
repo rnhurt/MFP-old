@@ -20,6 +20,7 @@ off1:
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt('officer1' + salt) %>
   persistence_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
+  active: true
 
 off2:
   type: Officer
@@ -32,4 +33,5 @@ off2:
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt('officer2' + salt) %>
   persistence_token: <%= Authlogic::Random.friendly_token %>
   perishable_token: <%= Authlogic::Random.friendly_token %>
+  active: true
 

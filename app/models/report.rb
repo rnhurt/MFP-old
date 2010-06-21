@@ -11,7 +11,7 @@ class Report < ActiveRecord::Base
   #  has_many  :properties,  :through => :involvements
   
   belongs_to  :location
-  belongs_to  :offence
+  belongs_to  :offense
 
   # Validations
   validates_length_of     :number, :minimum => 1

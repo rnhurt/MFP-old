@@ -1,7 +1,7 @@
 class CrimeAnalysisController < ApplicationController
   
   def index
-    @offence_counts = Offence.find(:all, :joins => :reports,  
+    @offense_counts = Offense.find(:all, :joins => :reports,
       :select => 'codes.value, count(*) AS count',
       :group => 'codes.value',
       :order => 'count DESC')
@@ -15,9 +15,9 @@ class CrimeAnalysisController < ApplicationController
     @locations = Report.recent.collect{|i| i.location.full_address}
 
     @map_url = "http://maps.google.com/maps/api/staticmap?sensor=false"
-    @map_url << "&markers=color:green|label:R|#{@locations[0..3].join('|')}"
-    @map_url << "&markers=color:red|label:G|#{@locations[4..7].join('|')}"
-    @map_url << "&markers=color:blue|label:B|#{@locations[8..10].join('|')}"
+    @map_url << "&markers=color:green|label:R|#{@locations[0..3].join('|')}" if @locations.size > 4
+    @map_url << "&markers=color:red|label:G|#{@locations[4..7].join('|')}" if @locations.size > 8
+    @map_url << "&markers=color:blue|label:B|#{@locations[8..10].join('|')}" if @locations.size > 11
 
   end
 

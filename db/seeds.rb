@@ -11,12 +11,12 @@ open(File.join(Rails.root, 'db', 'seeds', 'NCICStateCodes.txt')) do |states|
 end
 
 # Load OFFENCE codes
-puts '... NCIC OFFENCE codes...'
-Offence.delete_all
+puts '... NCIC OFFENSE codes...'
+Offense.delete_all
 open(File.join(Rails.root, 'db', 'seeds', 'NCICOffenseCodes.txt')) do |ocodes|
   ocodes.read.each_line do |ocode|
     code, value = ocode.chomp.split("|")
-    Offence.create!(:code => code, :value => value, :active => true)
+    Offense.create!(:code => code, :value => value, :active => true)
   end
 end
 
@@ -94,7 +94,19 @@ open(File.join(Rails.root, 'db', 'seeds', 'NCICPropertyTypeCodes.txt')) do |code
 end
 
 puts '... Officer Roles ...'
-OfficerRole.delete_all
+Role.officer.delete_all
 %w(Primary Secondary Backup).each do |role|
-  OfficerRole.create!(:value => role, :active => true)
+  Role.create!(:code => 'Officer', :value => role, :active => true)
+end
+
+puts '... Person Roles ...'
+Role.person.delete_all
+%w(Victim Witness Suspect Other).each do |role|
+  Role.create!(:code => 'Person', :value => role, :active => true)
+end
+
+puts '... Property Status ...'
+Status.delete_all
+%w(Stolen Recovered Seized Burned Destroyed Pawned Lost).each do |status|
+  Status.create!(:value => status, :active => true)
 end
