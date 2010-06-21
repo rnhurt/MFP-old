@@ -1,6 +1,6 @@
 class Property < ActiveRecord::Base
-  has_many  :involvements
-  has_many  :reports,   :through => :involvements
+  has_many  :property_involvements, :foreign_key => 'involved_id'
+  has_many  :reports, :through => :property_involvements
 
   belongs_to  :property_type
 

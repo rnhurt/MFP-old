@@ -4,6 +4,6 @@ class Officer < User
 
   # Methods
   def full_name
-    return "#{given_name} #{family_name}"
+    return "#{first_name} #{last_name}"
   end
 end

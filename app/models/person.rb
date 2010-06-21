@@ -2,9 +2,10 @@ class Person < ActiveRecord::Base
   belongs_to  :person_master
   has_many    :aliases, :through => :person_master
 
-  has_many    :involvements
-  has_many    :reports, :through => :involvements
-  has_many    :locations, :through => :involvements
+  has_many    :person_involvements, :foreign_key => 'involved_id'
+  has_many    :reports, :through => :person_involvements
+
+#  has_many    :locations, :through => :involvements
 
   belongs_to  :race
   belongs_to  :gender

@@ -44,14 +44,16 @@
   <table class="dataTable">
     <thead>
       <tr>
+        <th>Role</th>
         <th>Badge #</th>
         <th>Name</th>
       </tr>
     </thead>
     <tbody>
-      <% @report.officers.each do |o| %>
-          <%= content_tag :td, o.badge %>
-          <%= content_tag :td, o.full_name %>
+      <% @report.officer_involvements.each do |oi| %>
+          <%= content_tag :td, oi.role.value %>
+          <%= content_tag :td, oi.officer.badge_number %>
+          <%= content_tag :td, oi.officer.full_name %>
         </tr>
       <% end %>
     </tbody>
@@ -63,23 +65,23 @@
   <table class="dataTable">
     <thead>
       <tr>
+        <th>License (State)</th>
         <th>VIN</th>
         <th>Year</th>
         <th>Make</th>
         <th>Model</th>
         <th>Color</th>
-        <th>License</th>
       </tr>
     </thead>
     <tbody>
       <% @report.vehicles.each do |v| %>
         <tr>
+          <%= content_tag :td, "#{v.reg_number} (#{v.reg_state})" %>
           <%= content_tag :td, v.vin %>
           <%= content_tag :td, v.year %>
-          <%= content_tag :td, v.make %>
-          <%= content_tag :td, v.model %>
-          <%= content_tag :td, v.color %>
-          <%= content_tag :td, "#{v.reg_number} (#{v.reg_state})" %>
+          <%= content_tag :td, v.vehicle_make.value %>
+          <%= content_tag :td, v.vehicle_model.value %>
+          <%= content_tag :td, v.vehicle_color.value %>
         </tr>
       <% end %>
     </tbody>
@@ -113,7 +115,7 @@
   <div class="clearfix">&nbsp;</div>
 
   <%= f.submit 'Save' %>
-  <%= link_to 'Cancel', incidents_path %>
+  <%= link_to 'Cancel', reports_path %>
 
   <hr />
 <% end %>

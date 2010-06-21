@@ -18,12 +18,14 @@ input.blur, textarea.blur {color:#999999;}
 #sidebar { width:150px; float:left; }
 #center_col { margin-left:155px; min-height:300px; }
 
-.dataTables_wrapper { display:inline-block; position: relative; clear: both; width: 900px;
+.dataTables_wrapper { display:inline-block; position: relative; clear: both; 
   /* IE hack */
   zoom:1; *display:inline;}
+
 .ui-icon {float:right;}
 
-table { width:100%; }
+table { width:780px; }
+table.full { width:inherit; }
 table tr .money { text-align: right;}
 .wysiwyg { display:inline-block; }
 
