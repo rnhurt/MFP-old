@@ -1,4 +1,4 @@
-<table class="dataTable">
+<table class="dataTable full">
   <thead>
     <tr>
       <th>VIN</th>
@@ -15,10 +15,10 @@
         <td>
         <%= link_to (vehicle.vin.nil? ? '[edit]' : vehicle.vin), {:action => 'edit', :id => vehicle} %>
         </td>
-        <%= content_tag :td, vehicle.vehicle_make.value %>
-        <%= content_tag :td, vehicle.vehicle_model.value %>
-        <%= content_tag :td, vehicle.year %>
-        <%= content_tag :td, vehicle.vehicle_color.value %>
+        <%= content_tag :td, vehicle.vehicle_make ? vehicle.vehicle_make.value : '' %>
+        <%= content_tag :td, vehicle.vehicle_model ? vehicle.vehicle_model.value : '' %>
+        <%= content_tag :td, vehicle.year ? vehicle.year : '' %>
+        <%= content_tag :td, vehicle.vehicle_color ? vehicle.vehicle_color.value : '' %>
         <%= content_tag :td, truncate(vehicle.description, {:length => 150}) %>
       </tr>
     <% end %>

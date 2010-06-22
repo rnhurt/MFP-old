@@ -1,0 +1,30 @@
+<% javascript 'dynamic_vmodels' %>
+
+<% form_for @vehicle do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.label :vin, 'ID' %>
+  <%= f.text_field :vin, :title => 'VIN', :size => 20 %>
+  <%= f.text_field :reg_number, :title => 'Reg. Number', :size => 20 %>
+  <%= f.collection_select :reg_state, State.active, :code, :value, {:prompt => 'Reg. State'} %>
+
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Details' %>
+  <%= f.collection_select :vehicle_make_id, VehicleMake.active, :id, :value, {:prompt => 'Make'} %>
+  <%= f.collection_select :vehicle_model_id, VehicleModel.active, :id, :value, {:prompt => 'Model'} %>
+  <%= f.select(:year, (Time.now.year+1).downto(1900), :selected=>(f.object.year || Time.now.year)) %>
+  <%= f.collection_select :vehicle_color_id, VehicleColor.active, :id, :value, {:prompt => 'Color'} %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Description' %>
+  <%= f.text_area :description, :rows => 10, :cols => 80, :class => 'wysiwyg' %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.submit 'Save' %>
+  <%= link_to 'Cancel', vehicles_path %>
+
+<% end %>

@@ -42,7 +42,7 @@ class VehiclesController < ApplicationController
   end
 
   def search
-    @vehicles = Vehicle.search(params[:term])
+    @vehicles = Vehicle.search(params[:term], :limit => 20)
   end
 
 end
