@@ -3,8 +3,8 @@
     <tr class="ui-widget-header">
       <th>Report #</th>
       <th>Offense</th>
-      <th>Dispatched</th>
-      <th width="100">Time on scene</th>
+      <th width="130">Dispatched</th>
+      <th width="150">Time On Scene</th>
       <th>Narrative</th>
     </tr>
   </thead>
@@ -14,7 +14,7 @@
       <tr data-dialog-url='<%= url -%>' >
         <%= content_tag :td, link_to( report.number, url) %>
         <%= content_tag :td, report.offense.try(:value) %>
-        <%= content_tag :td, report.dispatched_at.strftime("%m/%d/%Y") %>
+        <%= content_tag :td, report.dispatched_at.strftime("%m/%d/%Y %R") %>
         <%= content_tag :td, report.cleared_at && report.arrived_at ?
           distance_of_time_in_words(report.cleared_at - report.arrived_at) : '-'  %>
         <%= content_tag :td, truncate(report.narrative, {:length => 150}) %>

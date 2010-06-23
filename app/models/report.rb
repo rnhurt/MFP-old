@@ -20,7 +20,7 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :number, :message => "has already been used.  Please enter a different number or edit the correct report."
 
  
-  named_scope :recent, :order => 'dispatched_at DESC', :limit => 10
+  named_scope :recent, :order => 'dispatched_at DESC', :limit => 10, :include => :location
 
   
   def self.search(term)
