@@ -27,7 +27,7 @@ namespace :db do
     vehicle_colors  = VehicleColor.active.collect{|v| v.id}
 
     Vehicle.populate 200 do |vehicle|
-      vehicle.vin         = Faker.numerify('###################')
+      vehicle.vin         = Faker.numerify('#################')
       vehicle.vehicle_make_id     = vehicle_makes
       vehicle.vehicle_model_id    = vehicle_models
       vehicle.vehicle_color_id    = vehicle_colors

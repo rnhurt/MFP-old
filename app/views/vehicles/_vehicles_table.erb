@@ -1,6 +1,6 @@
-<table class="dataTable full">
+<table class="dataTable full ui-widget-content">
   <thead>
-    <tr>
+    <tr class="ui-widget-header">
       <th>VIN</th>
       <th>Make</th>
       <th>Model</th>
@@ -11,14 +11,12 @@
   </thead>
   <tbody>
     <% @vehicles.each do |vehicle| %>
-      <tr>
-        <td>
-        <%= link_to (vehicle.vin.nil? ? '[edit]' : vehicle.vin), {:action => 'edit', :id => vehicle} %>
-        </td>
-        <%= content_tag :td, vehicle.vehicle_make ? vehicle.vehicle_make.value : '' %>
-        <%= content_tag :td, vehicle.vehicle_model ? vehicle.vehicle_model.value : '' %>
-        <%= content_tag :td, vehicle.year ? vehicle.year : '' %>
-        <%= content_tag :td, vehicle.vehicle_color ? vehicle.vehicle_color.value : '' %>
+      <tr data-dialog-url='<%= url_for( :action => "edit", :id => vehicle ) -%>' >
+        <%= content_tag :td, vehicle.vin %>
+        <%= content_tag :td, vehicle.vehicle_make.try(:value) %>
+        <%= content_tag :td, vehicle.vehicle_model.try(:value) %>
+        <%= content_tag :td, vehicle.year %>
+        <%= content_tag :td, vehicle.vehicle_color.try(:value) %>
         <%= content_tag :td, truncate(vehicle.description, {:length => 150}) %>
       </tr>
     <% end %>

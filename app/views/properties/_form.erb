@@ -1,0 +1,18 @@
+<% form_for @property do |f| %>
+  <%= f.error_messages %>
+
+  <%= f.label :value %>
+  <%= f.text_field :value, :title => 'what is this item worth?', :size => 20, :class => 'focus' %>
+  <%= f.collection_select :property_type_id, PropertyType.active, :id, :value, {:prompt => 'Type'} %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Description' %>
+  <%= f.text_area :description, :rows => 10, :cols => 80, :class => 'wysiwyg' %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.submit 'Save' %>
+  <%= link_to 'Cancel', properties_path %>
+
+<% end %>

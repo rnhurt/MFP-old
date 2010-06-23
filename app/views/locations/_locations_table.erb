@@ -1,22 +1,23 @@
-  <table class="dataTable">
-    <thead>
-      <tr>
-        <th>Street #</th>
-        <th>Street Name</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
+<table class="dataTable full ui-widget-content">
+  <thead>
+    <tr class="ui-widget-header">
+      <th>Street #</th>
+      <th>Street Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @locations.each do |location| %>
+      <% url = url_for( :action => "edit", :id => location ) %>
+      <tr data-dialog-url='<%= url -%>' >
+        <%= content_tag :td, link_to( location.try(:street_number), url ) -%>
+        <%= content_tag :td, location.street_name -%>
+        <%= content_tag :td, location.city -%>
+        <%= content_tag :td, location.state -%>
+        <%= content_tag :td, location.postal_code -%>
       </tr>
-    </thead>
-    <tbody>
-      <% @locations.each do |location| %>
-        <tr>
-          <%= content_tag :td, (link_to location.street_number, {:action => 'edit', :id => location}) %>
-          <%= content_tag :td, location.street_name %>
-          <%= content_tag :td, location.city %>
-          <%= content_tag :td, location.state %>
-          <%= content_tag :td, location.postal_code %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>

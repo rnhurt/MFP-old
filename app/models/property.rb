@@ -5,7 +5,7 @@ class Property < ActiveRecord::Base
   belongs_to  :property_type
 
   # Show the most recently edited records
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
+  named_scope :recent, :order => 'updated_at DESC', :limit => 10, :include => :property_type
 
   def self.search(term)
     search = "%#{term}%"

@@ -1,20 +1,24 @@
-  <table class="dataTable full">
-    <thead>
-      <tr>
-        <th>Report #</th>
-        <th>Offense</th>
-        <th>Date</th>
-        <th>Narrative</th>
+<table class="dataTable full ui-widget-content">
+  <thead>
+    <tr class="ui-widget-header">
+      <th>Report #</th>
+      <th>Offense</th>
+      <th>Dispatched</th>
+      <th width="100">Time on scene</th>
+      <th>Narrative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reports.each do |report| %>
+      <% url = url_for( :action => "edit", :id => report ) %>
+      <tr data-dialog-url='<%= url -%>' >
+        <%= content_tag :td, link_to( report.number, url) %>
+        <%= content_tag :td, report.offense.try(:value) %>
+        <%= content_tag :td, report.dispatched_at.strftime("%m/%d/%Y") %>
+        <%= content_tag :td, report.cleared_at && report.arrived_at ?
+          distance_of_time_in_words(report.cleared_at - report.arrived_at) : '-'  %>
+        <%= content_tag :td, truncate(report.narrative, {:length => 150}) %>
       </tr>
-    </thead>
-    <tbody>
-      <% @reports.each do |report| %>
-        <tr>
-          <%= content_tag :td, (link_to report.number, {:action => 'edit', :id => report}) %>
-          <%= content_tag :td, report.offense.value %>
-          <%= content_tag :td, report.dispatched_at.strftime("%m/%d/%Y") %>
-          <%= content_tag :td, truncate(report.narrative, {:length => 150}) %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>

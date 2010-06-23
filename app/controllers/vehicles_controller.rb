@@ -14,6 +14,10 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new
   end
 
+  def edit
+    @vehicle = Vehicle.find(params[:id])
+  end
+
   def create
     @vehicle = Vehicle.new(params[:vehicle])
 
@@ -23,10 +27,6 @@ class VehiclesController < ApplicationController
     else
       render :action => :new
     end
-  end
-
-  def edit
-    @vehicle = Vehicle.find(params[:id])
   end
 
   def update
@@ -42,7 +42,7 @@ class VehiclesController < ApplicationController
   end
 
   def search
-    @vehicles = Vehicle.search(params[:term], :limit => 20)
+    @vehicles = Vehicle.search(params[:term])
   end
 
 end

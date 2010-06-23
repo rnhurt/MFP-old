@@ -1,17 +1,18 @@
-<table class="dataTable">
+<table class="dataTable full ui-widget-content">
   <thead>
-    <tr>
+    <tr class="ui-widget-header">
       <th>Value</th>
-      <th>Description</th>
       <th>Type</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <% @properties.each do |property| %>
-      <tr>
-        <%= content_tag :td, number_to_currency(property.value), :class => 'money' %>
-        <%= content_tag :td, (link_to property.description, {:action => 'edit', :id => property}) %>
-        <%= content_tag :td, property.property_type.value %>
+    <% url = url_for( :action => "edit", :id => property ) %>
+      <tr data-dialog-url='<%= url -%>' >
+        <%= content_tag :td, number_to_currency(property.value), :class => 'money' -%>
+        <%= content_tag :td, property.property_type.try(:value) -%>
+        <%= content_tag :td, link_to(property.description, url) -%>
       </tr>
     <% end %>
   </tbody>

@@ -7,8 +7,8 @@
     <title>Dingo<%= " - " + controller.controller_name.humanize -%></title>
 
     <%= stylesheet_link_tag 'reset', 'smoothness/jquery-ui-1.8.1',
-      'table_jui.css','jquery.wysiwyg',
-      'timepicker_plug' ,'main' -%>
+      'jquery.wysiwyg', 'timepicker_plug' ,'main' -%>
+    <link type="text/css" rel="stylesheet" href="http://jqueryui.com/themes/base/ui.all.css" />
 
     <%= yield(:head) -%>
   </head>
@@ -24,6 +24,8 @@
             <span><%= link_to 'My Account', edit_account_path() %></span> |
             <span><%= link_to "log out", logout_path, :method => :delete %></span>
           <% end %>
+          <div id="switcher" style="padding:20px;"></div>
+
         </div>
         <a href="/"><h1>Dingo - Law Enforcement RMS</h1></a>
       </div>

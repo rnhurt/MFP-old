@@ -18,19 +18,15 @@ input.blur, textarea.blur {color:#999999;}
 #sidebar { width:150px; float:left; }
 #center_col { margin-left:155px; min-height:300px; }
 
-.dataTables_wrapper { display:inline-block; position: relative; clear: both; 
-  /* IE hack */
-  zoom:1; *display:inline;}
-
-.ui-icon {float:right;}
-
-table { width:780px; }
-table.full { width:inherit; }
-table tr .money { text-align: right;}
+#flash { margin:auto; text-align:center }
 .wysiwyg { display:inline-block; }
 
-
-#flash { margin:auto; text-align:center }
+/* Tables
+----------------------------------*/
+table { width:780px; }
+table.full { width:100%; }
+table td { padding:1px 10px 1px 10px; }
+table tr .money { text-align: right;}
 
 /* Vertical Tabs
 ----------------------------------*/
@@ -41,6 +37,7 @@ table tr .money { text-align: right;}
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-selected { padding-bottom: 0; padding-right: .1em; border-right-width: 1px; border-right-width: 1px; }
 .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: right; width: 40em;}
 .ui-tabs-vertical .dataTables_wrapper { width:100% }
+
 /* Scaffold Defaults
 ----------------------------------*/
 .fieldWithErrors {
