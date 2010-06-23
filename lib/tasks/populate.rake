@@ -87,8 +87,7 @@ namespace :db do
       contact.role_id     = roles
     end
 
-    # Choose some 'normal' offenses...
-    offenses = %w(279 303 327 206 213 123 148 179 188)
+    offenses = Offense.active.collect{|l| l.id}
 
     Report.populate 200 do |report|
       report.number       = Faker.numerify('######-######')
@@ -96,8 +95,8 @@ namespace :db do
       report.location_id  = locations
 
       report.cleared_at     = 5.years.ago..5.days.ago
-      report.arrived_at     = report.cleared_at - 2.hours
-      report.dispatched_at  = report.arrived_at - 1.hour
+      report.arrived_at     = report.cleared_at - Faker.numerify('##').to_i.minutes
+      report.dispatched_at  = report.arrived_at - Faker.numerify('#').to_i.hours
       report.narrative      = Populator.paragraphs(3)
 
 #      report.persons <<
