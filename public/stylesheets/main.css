@@ -40,6 +40,9 @@ form img.map {
 #flash { margin:auto; text-align:center }
 .wysiwyg { display:inline-block; }
 
+.loading-masked { overflow: hidden; }
+.loading-error { color: #FFF; background: red; }
+
 /* Tables
 ----------------------------------*/
 table { width:780px; }

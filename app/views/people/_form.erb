@@ -3,15 +3,17 @@
 
   <%= image_tag "stock_person.png", :class => 'polaroid-image', :size => '' %>
 
-  <%= f.label 'Name' %>
-  <%= f.text_field :first_name, :title => 'first name', :size => 20 %>
-  <%= f.text_field :middle_name, :title => 'middle name', :size => 20 %>
-  <%= f.text_field :last_name, :title => 'last name', :size => 20 %>
+  <label>First Name</label>
+  <%= f.text_field :first_name, :title => 'first' %><br />
+  <label>Middle Name</label>
+  <%= f.text_field :middle_name, :title => 'middle' %><br />
+  <label>First Name</label>
+  <%= f.text_field :last_name, :title => 'last' %>
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label 'Addresses' %>
-  <% @person.locations.each do |location| %>
+  <%= f.label 'Contacts' %>
+  <% @person.contacts.each do |contact| %>
     <%#= f.text_field location.street_number %>
   <% end %>
 

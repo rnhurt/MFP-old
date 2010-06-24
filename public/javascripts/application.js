@@ -22,7 +22,7 @@ function pageRefresh(){
 function searchInit(){
   $('input.search').keyup(function() {
     element = $(this);
-    delay(function(){
+    mydelay(function(){
       data = element.val();
       url = element.attr('data-search-url');
       if (data.length > 2) {
@@ -48,7 +48,7 @@ function tableInit(){
     form = $("#dialog-form");
     form.html("");                                                            // Clear out the old stuff
     $.get($(this).attr('data-dialog-url'), '', null, 'script');               // Load the new content
-    form.dialog( "option", "height", form.attr("data-dialog-height") || 600 );// Set the dialog box height
+    form.dialog( "option", "height", form.attr("data-dialog-height") || 500 );// Set the dialog box height
     form.dialog( "option", "width", form.attr("data-dialog-width") || 950 );  // Set the dialog box width
     form.dialog('open');                                                      // And finally open the dialog box
     return false;
@@ -70,9 +70,19 @@ function pageInit(){
   // Set up the accordion structure
   //    $(".accordion").accordion();
 
-  // Configure BlockUI
-  $.blockUI.defaults.baseZ = '9999';
-  $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+  $.loading({
+    onAjax:true,
+    delay: 750,
+    mask:true,
+    text: 'Working...',
+    pulse: 'working error',
+    css: {
+      'text-align':'center',
+      width:100,
+      zIndex:5001
+    },
+    classname: 'ui-widget ui-widget-header ui-corner-bottom ui-state-highlight'
+  });
 
   // Configure the jQueryUI dialog box
   $("#dialog-form").dialog({
@@ -87,7 +97,7 @@ function pageInit(){
 
 // Private functions
 // ====================================
-var delay = (function(){
+var mydelay = (function(){
   var timer = 0;
   return function(callback, ms){
     clearTimeout (timer);
