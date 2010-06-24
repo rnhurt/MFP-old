@@ -48,7 +48,8 @@ function tableInit(){
     form = $("#dialog-form");
     form.html("");                                                            // Clear out the old stuff
     $.get($(this).attr('data-dialog-url'), '', null, 'script');               // Load the new content
-    form.dialog( "option", "height", form.attr("data-dialog-height") || 500 );// Set the dialog box width
+    form.dialog( "option", "height", form.attr("data-dialog-height") || 600 );// Set the dialog box height
+    form.dialog( "option", "width", form.attr("data-dialog-width") || 950 );  // Set the dialog box width
     form.dialog('open');                                                      // And finally open the dialog box
     return false;
   });
