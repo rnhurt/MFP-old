@@ -20,11 +20,14 @@ class Report < ActiveRecord::Base
   validates_uniqueness_of :number, :message => "has already been used.  Please enter a different number or edit the correct report."
 
  
-  named_scope :recent, :order => 'dispatched_at DESC', :limit => 10, :include => :location
+  named_scope :recent, :order => 'dispatched_at DESC', :limit => 10, :include => [:location, :offense]
 
   
   def self.search(term)
-    self.find(:all, :conditions => ['number LIKE ?', "%#{term}%"])
+    search = "%#{term}%"
+    self.find(:all, :include => [:offense, :location],
+      :conditions => ["number LIKE ? OR 'offense_offenses'.value LIKE ?",
+        search, search], :limit => 50)
   end
 
 end

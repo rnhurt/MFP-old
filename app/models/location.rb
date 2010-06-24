@@ -15,10 +15,10 @@ class Location < ActiveRecord::Base
     return "#{self.street_number} #{self.street_name}  #{self.city}, #{self.state}  #{self.postal_code}"
   end
 
-  def self.search(raw_term)
-    term = "%#{raw_term}%"
+  def self.search(term)
+    search = "%#{term}%"
     self.find(:all, :conditions => ['street_number LIKE ? OR street_name LIKE ? OR city LIKE ? OR postal_code LIKE ?',
-        term, term, term, term])
+        search, search, search, search])
   end
 
 end

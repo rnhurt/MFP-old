@@ -13,11 +13,11 @@ class Vehicle < ActiveRecord::Base
     :order => 'updated_at DESC', :limit => 10
 
 
-  def self.search(search_term)
-    term = "%#{search_term}%"
+  def self.search(term)
+    search = "%#{term}%"
     self.find(:all, :include => [:vehicle_make, :vehicle_model, :vehicle_color],
         :conditions => ["vin LIKE ? OR year LIKE ? OR 'vehicle_colors_vehicles'.value LIKE ? OR 'vehicle_models_vehicles'.value LIKE ?",
-        term, term, term, term], :limit => 50)
+        search, search, search, search], :limit => 50)
   end
 
 end
