@@ -1,19 +1,26 @@
 <% form_for @location do |f| %>
   <%= f.error_messages %>
 
-  <%= f.label :street %>
-  <%= f.text_field :street_number, :title => 'number', :class => 'focus', :size => 10 %>
-  <%= f.text_field :street_name, :title => 'name' %>
-  <%= f.text_field :block, :title => 'block', :size => 10 %>
+  <%= image_tag "stock_map.png", :class => 'map', :size => '300x300' %>
+
+  <label>Street Number</label>
+  <%= f.text_field :street_number, :title => 'number', :class => 'focus' %><br />
+  <label>Name</label>
+  <%= f.text_field :street_name, :title => 'name' %><br />
+  <label>Block</label>
+  <%= f.text_field :block, :title => 'block' %><br />
+  <label>X-Street</label>
+  <%= f.text_field :crossstreet, :title => 'crossstreet' %><br />
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label :city %>
-  <%= f.text_field :city, :title => 'city', :size => 10 %>
+  <label>City</label>
+  <%= f.text_field :city, :title => 'city' %><br />
+  <label>&nbsp;</label>
   <%= f.collection_select :state, State.active, :code, :value, {:prompt => ''} %>
-  <%= f.text_field :postal_code, :title => 'postal code', :size => 10 %>
+  <%= f.text_field :postal_code, :title => 'postal code', :size => 10 %><br />
 
-<%#= f.label 'Description' %>
+  <%#= f.label 'Description' %>
   <%#= f.text_area :description, :rows => 10, :cols => 80, :class => 'wysiwyg' %>
 
   <div class="clearfix">&nbsp;</div>

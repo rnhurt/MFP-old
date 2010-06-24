@@ -11,9 +11,28 @@ body { font: 12px Arial, Helvetica, sans-serif;}
 
 div.container { background-color:transparent; margin:0px auto; padding:0; width:  950px;}
 
+input.blur, textarea.blur {color:#999999;}
+
 form label { float:left; display:inline-block; text-align:right; width:100px; vertical-align: top; padding-right: 10px}
 form p { display:inline-block}
-input.blur, textarea.blur {color:#999999;}
+form img { float: right; }
+form img.map {
+  border: 2px solid grey;
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+}
+
+.polaroid-image {
+  border: 10px solid white;
+  border-bottom: 30px solid white;
+  background-color: lightGrey;
+  -webkit-box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  -moz-box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  margin: 10px;
+}
+
 
 #sidebar { width:150px; float:left; }
 #center_col { margin-left:155px; min-height:300px; }
