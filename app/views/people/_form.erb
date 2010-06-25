@@ -12,6 +12,14 @@
 
   <div class="clearfix">&nbsp;</div>
 
+  <label>Details</label>
+  <%= f.text_field :gender_id, :title => 'gender' %>
+  <%= f.text_field :race_id, :title => 'race' %>
+  <%= f.text_field :eye_color, :title => 'eye color' %>
+  <%= f.text_field :hair_color, :title => 'hair color' %>
+
+  <div class="clearfix">&nbsp;</div>
+
   <%= f.label 'Contacts' %>
   <table class="dataTable short ui-widget-content">
     <thead>
@@ -33,6 +41,26 @@
   </table>
 
   <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Recent Activity' %>
+  <table class="dataTable short ui-widget-content">
+    <thead>
+      <tr class="ui-widget-header">
+        <td>Report #</td>
+        <td>Offense</td>
+        <td>Dispatch Date/Time</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @person.person_involvements.each do |involvement| %>
+        <tr>
+          <%= content_tag :td, involvement.report.number %>
+          <%= content_tag :td, involvement.report.offense.try(:value) %>
+          <%= content_tag :td, involvement.report.dispatched_at.strftime("%m/%d/%Y %R") %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <%= f.submit 'Save' %>
   <%= link_to 'Cancel', people_path %>

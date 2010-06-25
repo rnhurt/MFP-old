@@ -26,7 +26,7 @@ class PeopleController < ApplicationController
   end
   
   def edit
-    @person = Person.find(params[:id])
+    @person = Person.find(params[:id], :include => [:person_involvements, :locations])
 
     # Add defaults
 #    @person.locations << Location.new if !@person.locations.exists?
