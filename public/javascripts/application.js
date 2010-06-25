@@ -2,21 +2,24 @@
 $(function() {
   $('#switcher').themeswitcher();   // FIXME: Temporary
   pageRefresh();
-
-  tabInit();                      // Initialize the tab elements
-  
+  tabInit();                      // Initialize the tab elements 
   searchInit();   // Set up the search functionality on the page
-
   pageInit();     // Set up general page things: Ajax, BlockUI, etc.
 });
 
 function pageRefresh(){
   $('textarea[title!=""],input[title!=""]').hint();   // Show input 'hints'
   //  $('.timepicker').datetime({userLang:'en',americanMode:true});
-  $('.datepicker').datepicker();      // Initialize the date picker elements
   $('.wysiwyg').wysiwyg();
   tableInit();
   $("input.focus:last").focus();  // Set the focus on the last input tag with a class of "focus"
+  $('.datepicker').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    showOtherMonths: true,
+    selectOtherMonths: true, 
+    showAnim: 'slideDown'
+  });
 }
 
 function searchInit(){

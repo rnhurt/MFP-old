@@ -5,7 +5,7 @@
 
   <label>ID</label>
   <%= f.text_field :ssn, :title => 'ssn', :size => 25 %>
-  <%= f.text_field :dob, :title => 'dob', :size => 25 %>
+  <%= f.text_field :dob, :class => 'datepicker', :title => 'dob', :size => 25, :value => @person.dob.strftime("%m/%d/%Y") %>
 
   <div class="clearfix">&nbsp;</div>
 
