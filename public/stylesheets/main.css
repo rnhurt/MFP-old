@@ -13,6 +13,13 @@ div.container { background-color:transparent; margin:0px auto; padding:0; width:
 
 input.blur, textarea.blur {color:#999999;}
 
+form label span {
+  font-size:smaller;
+  margin-left:60px;
+  margin-top:-12px;
+  position:absolute;
+}
+
 form label { float:left; display:inline-block; text-align:right; width:100px; vertical-align: top; padding-right: 10px}
 form p { display:inline-block}
 form img { float: right; }
@@ -46,11 +53,12 @@ form img.map {
 
 /* Tables
 ----------------------------------*/
-table { width:780px; }
-table.full { width:100%; }
-table.short{ width:540px;}
+table { width:780px; table-layout:fixed; }
+table.full { width:100%; table-layout:fixed; }
+table.short{ width:540px; table-layout:fixed; }
 table td { padding:1px 10px 1px 10px; }
 table tr .money { text-align: right;}
+table th { text-align: left; padding-left:10px;}
 
 /* Vertical Tabs
 ----------------------------------*/

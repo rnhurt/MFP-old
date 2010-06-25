@@ -60,13 +60,14 @@ namespace :db do
         person.first_name   = Faker::Name.first_name
         person.middle_name  = Faker::Name.first_name
         person.last_name    = last_name
+        person.dob          = 120.years.ago.to_date..15.years.ago.to_date
         person.ssn          = Faker.numerify('###-##-####')
         person.gender_id    = gender
         person.race_id      = race
         person.height       = 100..500
         person.weight       = 50..500
-        person.eyecolor_id  = eyecolors
-        person.haircolor_id = haircolors
+        person.eye_color_id   = eyecolors
+        person.hair_color_id  = haircolors
         person.ol_state_id  = states
         person.ol_number    = Faker.numerify('#####-######')
         person.active       = ['T','T','T','T','T','T','F']

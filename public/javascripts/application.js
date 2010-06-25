@@ -46,12 +46,15 @@ function tableInit(){
   $('.dataTable tbody tr')
   .click(function(e) {
     form = $("#dialog-form");
-    form.html("");                                                            // Clear out the old stuff
-    $.get($(this).attr('data-dialog-url'), '', null, 'script');               // Load the new content
-    form.dialog( "option", "height", form.attr("data-dialog-height") || 500 );// Set the dialog box height
-    form.dialog( "option", "width", form.attr("data-dialog-width") || 950 );  // Set the dialog box width
-    form.dialog('open');                                                      // And finally open the dialog box
-    return false;
+    if (form.length ) {
+      // Only bind the dialog box if there is something to bind it to
+      form.html("");                                                            // Clear out the old stuff
+      $.get($(this).attr('data-dialog-url'), '', null, 'script');               // Load the new content
+      form.dialog( "option", "height", form.attr("data-dialog-height") || 500 );// Set the dialog box height
+      form.dialog( "option", "width", form.attr("data-dialog-width") || 950 );  // Set the dialog box width
+      form.dialog('open');                                                      // And finally open the dialog box
+      return false;
+    }
   });
 
   // Style the table

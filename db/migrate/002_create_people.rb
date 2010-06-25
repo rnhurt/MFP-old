@@ -11,8 +11,8 @@ class CreatePeople < ActiveRecord::Migration
       t.integer :gender_id
       t.integer :height
       t.integer :weight
-      t.integer :eyecolor_id
-      t.integer :haircolor_id
+      t.integer :eye_color_id
+      t.integer :hair_color_id
       t.string  :ol_number
       t.integer :ol_state_id
 

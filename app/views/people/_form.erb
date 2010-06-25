@@ -3,20 +3,49 @@
 
   <%= image_tag "stock_person.png", :class => 'polaroid-image', :size => '' %>
 
-  <label>First Name</label>
-  <%= f.text_field :first_name, :title => 'first' %><br />
-  <label>Middle Name</label>
-  <%= f.text_field :middle_name, :title => 'middle' %><br />
-  <label>Last Name</label>
-  <%= f.text_field :last_name, :title => 'last' %>
+  <label>ID</label>
+  <%= f.text_field :ssn, :title => 'ssn', :size => 25 %>
+  <%= f.text_field :dob, :title => 'dob', :size => 25 %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <label>Name</label>
+  <%= f.text_field :first_name, :title => 'first', :size => 25 %>
+  <%= f.text_field :middle_name, :title => 'middle', :size => 15 %>
+  <%= f.text_field :last_name, :title => 'last', :size => 25 %>
 
   <div class="clearfix">&nbsp;</div>
 
   <label>Details</label>
-  <%= f.text_field :gender_id, :title => 'gender' %>
-  <%= f.text_field :race_id, :title => 'race' %>
-  <%= f.text_field :eye_color, :title => 'eye color' %>
-  <%= f.text_field :hair_color, :title => 'hair color' %>
+  <%= f.collection_select :gender_id, Gender.active, :id, :value, {:prompt => 'Gender'} %>
+  <%= f.collection_select :race_id, Race.active, :id, :value, {:prompt => 'Race'} %>
+  <%= f.collection_select :eye_color_id, EyeColor.active, :id, :value, {:prompt => 'Eye Color'} %>
+  <%= f.collection_select :hair_color_id, HairColor.active, :id, :value, {:prompt => 'Hair Color'} %>
+
+  <div class="clearfix">&nbsp;</div>
+
+  <%= f.label 'Aliases' %>
+  <table class="dataTable short ui-widget-content">
+    <thead>
+      <tr class="ui-widget-header">
+        <th>Entered</th>
+        <th>SSN</th>
+        <th>Name</th>
+        <th>DOB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @person.person_master.people.each do |person| %>
+        <% url = url_for( :action => "edit", :id => person ) %>
+        <tr ata-dialog-url='<%= url -%>' >
+          <%= content_tag :td, link_to( person.created_at.strftime("%m/%d/%Y"), url ) %>
+          <%= content_tag :td, person.ssn %>
+          <%= content_tag :td, person.full_name %>
+          <%= content_tag :td, person.dob ? person.dob.strftime("%m/%d/%Y") : 'n/a' %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="clearfix">&nbsp;</div>
 
@@ -24,9 +53,9 @@
   <table class="dataTable short ui-widget-content">
     <thead>
       <tr class="ui-widget-header">
-        <td>Category</td>
-        <td>Address</td>
-        <td>Phone #</td>
+        <th>Category</th>
+        <th>Address</th>
+        <th>Phone #</th>
       </tr>
     </thead>
     <tbody>
@@ -42,7 +71,7 @@
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label 'Recent Activity' %>
+  <%= f.label 'Incidents' %>
   <table class="dataTable short ui-widget-content">
     <thead>
       <tr class="ui-widget-header">
@@ -61,6 +90,8 @@
       <% end %>
     </tbody>
   </table>
+
+  <div class="clearfix" style="clear:both;">&nbsp;</div>
 
   <%= f.submit 'Save' %>
   <%= link_to 'Cancel', people_path %>

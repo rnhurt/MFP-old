@@ -14,8 +14,10 @@ class Person < ActiveRecord::Base
   belongs_to  :eye_color
   belongs_to  :state
 
+  default_scope :order => 'updated_at DESC'
+
   # Show the most recently edited records
-  named_scope :recent, :order => 'updated_at DESC', :limit => 10
+  named_scope :recent, :limit => 10
 
   # Convenience method to return the persons full name
   def full_name

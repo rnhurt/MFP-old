@@ -1,6 +1,7 @@
 <table class="dataTable full ui-widget-content">
   <thead>
     <tr class="ui-widget-header">
+      <th>Entered</th>
       <th>SSN</th>
       <th>First Name</th>
       <th>Middle Name</th>
@@ -12,7 +13,8 @@
     <% @people.each do |person| %>
       <% url = url_for( :action => "edit", :id => person ) %>
       <tr data-dialog-url='<%= url -%>' >
-        <%= content_tag :td, link_to( person.ssn, url ) %>
+        <%= content_tag :td, link_to( person.created_at.strftime("%m/%d/%Y"), url ) %>
+        <%= content_tag :td, person.ssn %>
         <%= content_tag :td, person.first_name %>
         <%= content_tag :td, person.middle_name %>
         <%= content_tag :td, person.last_name %>
