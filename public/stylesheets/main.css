@@ -33,6 +33,7 @@ form img.map {
   margin: 10px;
 }
 
+.edit_person { min-height: 300px; }
 
 #sidebar { width:150px; float:left; }
 #center_col { margin-left:155px; min-height:300px; }
@@ -47,6 +48,7 @@ form img.map {
 ----------------------------------*/
 table { width:780px; }
 table.full { width:100%; }
+table.short{ width:540px;}
 table td { padding:1px 10px 1px 10px; }
 table tr .money { text-align: right;}
 

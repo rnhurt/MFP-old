@@ -81,10 +81,11 @@ namespace :db do
     people    = Person.all.collect{|l| l.id}
     locations = Location.all.collect{|l| l.id}
 
-    Contact.populate 200 do |contact|
+    Contact.populate 2000 do |contact|
       contact.person_id   = people
       contact.location_id = locations
       contact.role_id     = roles
+      contact.phone_number= Faker.numerify('##########')
     end
 
     offenses = Offense.active.collect{|l| l.id}

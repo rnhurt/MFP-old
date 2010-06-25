@@ -5,7 +5,6 @@ $(function() {
 
   tabInit();                      // Initialize the tab elements
   
-  tableInit();    // Set up the tables on the page
   searchInit();   // Set up the search functionality on the page
 
   pageInit();     // Set up general page things: Ajax, BlockUI, etc.
@@ -16,6 +15,7 @@ function pageRefresh(){
   //  $('.timepicker').datetime({userLang:'en',americanMode:true});
   $('.datepicker').datepicker();      // Initialize the date picker elements
   $('.wysiwyg').wysiwyg();
+  tableInit();
   $("input.focus:last").focus();  // Set the focus on the last input tag with a class of "focus"
 }
 

@@ -29,7 +29,7 @@ class PeopleController < ApplicationController
     @person = Person.find(params[:id])
 
     # Add defaults
-    @person.locations << Location.new if !@person.locations.exists?
+#    @person.locations << Location.new if !@person.locations.exists?
   end
 
   def update
