@@ -33,10 +33,10 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
 
     if @report.update_attributes(params[:report])
-      flash[:notice] = "'#{@report.full_name}' was successfully updated."
+      flash[:notice] = "'#{@report.number}' was successfully updated."
       redirect_to :action => :index
     else
-      flash[:error] = "'#{@report.full_name}' failed to update."
+      flash[:error] = "'#{@report.number}' failed to update."
       redirect_to :action => :edit
     end
   end

@@ -5,8 +5,8 @@
 
   <label>ID</label>
   <%= f.text_field :ssn, :title => 'ssn', :size => 25 %>
-  <%= f.text_field :dob, :class => 'datepicker', :title => 'dob', :size => 25, :value => @person.dob.strftime("%m/%d/%Y") %>
-
+  <%= f.text_field :dob, :class => 'datepicker', :title => 'dob', :size => 25, :value => @person.dob %>
+  
   <div class="clearfix">&nbsp;</div>
 
   <label>Name</label>
@@ -38,10 +38,10 @@
       <% @person.person_master.people.each do |person| %>
         <% url = url_for( :action => "edit", :id => person ) %>
         <tr ata-dialog-url='<%= url -%>' >
-          <%= content_tag :td, link_to( person.created_at.strftime("%m/%d/%Y"), url ) %>
+          <%= content_tag :td, link_to( person.created_at, url ) %>
           <%= content_tag :td, person.ssn %>
           <%= content_tag :td, person.full_name %>
-          <%= content_tag :td, person.dob ? person.dob.strftime("%m/%d/%Y") : 'n/a' %>
+          <%= content_tag :td, person.dob %>
         </tr>
       <% end %>
     </tbody>
