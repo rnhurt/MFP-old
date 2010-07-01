@@ -1,10 +1,10 @@
 namespace :db do
-  desc "Erase and fill database"
+  desc "Erase and fill database with test data"
   task :populate => :environment do
     require 'populator'
     require 'faker'
     
-    [Property, Location, Vehicle, Person, Contact, Report, Involvement].each(&:delete_all)
+    [Property, Location, Vehicle, Person, Address, Report, CallForService, Involvement].each(&:delete_all)
 
     property_types = PropertyType.active.collect{|p| p.id}
     
@@ -78,15 +78,15 @@ namespace :db do
     end
 
 
-    roles     = Role.contact.active.collect{|l| l.id}
+    roles     = Role.address.active.collect{|l| l.id}
     people    = Person.all.collect{|l| l.id}
     locations = Location.all.collect{|l| l.id}
 
-    Contact.populate 2000 do |contact|
-      contact.person_id   = people
-      contact.location_id = locations
-      contact.role_id     = roles
-      contact.phone_number= Faker.numerify('##########')
+    Address.populate 2000 do |address|
+      address.person_id   = people
+      address.location_id = locations
+      address.role_id     = roles
+      address.phone_number= Faker.numerify('##########')
     end
 
     offenses = Offense.active.collect{|l| l.id}
@@ -107,6 +107,19 @@ namespace :db do
       report.updated_at = report.created_at
     end
 
+    CallForService.populate 200 do |cfs|
+      cfs.offense_id    = offenses
+      cfs.cleared_at    = 5.years.ago..5.days.ago
+      cfs.arrived_at    = cfs.cleared_at - Faker.numerify('##').to_i.minutes
+      cfs.dispatched_at = cfs.arrived_at - Faker.numerify('#').to_i.hours
+      cfs.narrative     = Populator.paragraphs(3)
+      cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
+
+#      cfs.persons <<
+
+      cfs.created_at = cfs.cleared_at + 5.hours
+      cfs.updated_at = cfs.created_at
+    end
     
     officers  = Officer.active.collect{|l| l.id}
     reports   = Report.all.collect{|l| l.id}

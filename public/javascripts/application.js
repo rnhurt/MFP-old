@@ -1,6 +1,5 @@
 // Begin processing jQuery commands after the page loads
 $(function() {
-  $('#switcher').themeswitcher();   // FIXME: Temporary
   pageRefresh();
   tabInit();                      // Initialize the tab elements 
   searchInit();   // Set up the search functionality on the page

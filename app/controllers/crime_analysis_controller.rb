@@ -12,7 +12,7 @@ class CrimeAnalysisController < ApplicationController
       @report_counts_by_year << [blah.year, Report.count(:all, :conditions => { :updated_at => blah.beginning_of_year..blah.end_of_year })]
     end
 
-    @locations = Report.recent.collect{|i| i.location.full_address}
+    @locations = Report.recent.collect{|i| i.location.try(:full_address)}
 
     @map_url = "http://maps.google.com/maps/api/staticmap?sensor=false"
     @map_url << "&markers=color:green|label:R|#{@locations[0..3].join('|')}" if @locations.size > 4

@@ -105,10 +105,10 @@ Role.person.delete_all
   Role.create!(:code => 'Person', :value => role, :active => true)
 end
 
-puts '... Contact Roles ...'
-Role.contact.delete_all
+puts '... Address Roles ...'
+Role.address.delete_all
 %w(Home Work Office).each do |role|
-  Role.create!(:code => 'Contact', :value => role, :active => true)
+  Role.create!(:code => 'Address', :value => role, :active => true)
 end
 
 puts '... Property Status ...'

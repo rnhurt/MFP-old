@@ -1,6 +1,6 @@
-class CreateContacts < ActiveRecord::Migration
+class CreateAddresses < ActiveRecord::Migration
   def self.up
-    create_table :contacts do |t|
+    create_table :addresses do |t|
       t.integer :person_id
       t.integer :role_id
       t.integer :location_id
@@ -14,6 +14,6 @@ class CreateContacts < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :contacts
+    drop_table :addresses
   end
 end

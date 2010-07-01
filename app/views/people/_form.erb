@@ -49,7 +49,7 @@
 
   <div class="clearfix">&nbsp;</div>
 
-  <%= f.label 'Contacts' %>
+  <%= f.label 'Addresses' %>
   <table class="dataTable short ui-widget-content">
     <thead>
       <tr class="ui-widget-header">
@@ -59,11 +59,11 @@
       </tr>
     </thead>
     <tbody>
-      <% @person.contacts.each do |contact| %>
+      <% @person.addresses.each do |address| %>
         <tr>
-          <%= content_tag :td, contact.role.try(:value) %>
-          <%= content_tag :td, contact.location.full_address %>
-          <%= content_tag :td, number_to_phone(contact.phone_number, :area_code => true, :delimiter => ' ') %>
+          <%= content_tag :td, address.role.try(:value) %>
+          <%= content_tag :td, address.location.full_address %>
+          <%= content_tag :td, number_to_phone(address.phone_number, :area_code => true, :delimiter => ' ') %>
         </tr>
       <% end %>
     </tbody>

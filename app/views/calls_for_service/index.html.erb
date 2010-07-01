@@ -1,0 +1,18 @@
+<% form_for :call_for_service, :action => :new, :html => { :method => :get } do |f| %>
+
+  <%= f.error_messages %>
+
+  <%= f.text_field 'term', :class => 'search focus', 'data-search-url' => search_calls_for_service_path %>
+  <%= f.submit 'Search for an existing call', :name => 'search' %>
+  <%= f.submit 'Enter a new call', :name => 'new' %>
+
+  <hr class="clearfix" />
+
+  <div id="calls">
+    <%= render 'calls_table' %>
+  </div>
+
+<% end %>
+
+<div id="dialog-form" data-dialog-title="Calls For Service Details"></div>
+

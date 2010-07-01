@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class Address < ActiveRecord::Base
 #  has_many    :involvements
   belongs_to  :person
   belongs_to  :location

@@ -1,0 +1,24 @@
+<table class="dataTable full ui-widget-content">
+  <thead>
+    <tr class="ui-widget-header">
+      <th>Call #</th>
+      <th>Reason</th>
+      <th width="130">Dispatched</th>
+      <th width="150">Time On Scene</th>
+      <th>Narrative</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @calls.each do |call| %>
+      <% url = url_for( :action => "edit", :id => call ) %>
+      <tr data-dialog-url='<%= url -%>' >
+        <%= content_tag :td, link_to( call.number, url) %>
+        <%= content_tag :td, call.offense.try(:value) %>
+        <%= content_tag :td, call.dispatched_at.strftime("%m/%d/%Y %R") %>
+        <%= content_tag :td, call.cleared_at && call.arrived_at ?
+          distance_of_time_in_words(call.cleared_at - call.arrived_at) : '-'  %>
+        <%= content_tag :td, truncate(call.narrative, {:length => 150}) %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
