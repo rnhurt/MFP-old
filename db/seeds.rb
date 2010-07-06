@@ -1,9 +1,9 @@
 # FIXME: Don't overwrite or change 'active' status on existing records
 
-# Load STATE codes
-puts '... NCIC State data...'
+# Load REGION codes
+puts '... NCIC REGION data...'
 Region.delete_all
-open(File.join(Rails.root, 'db', 'seeds', 'NCICStateCodes.txt')) do |states|
+open(File.join(Rails.root, 'db', 'seeds', 'NCICRegionCodes.txt')) do |states|
   states.read.each_line do |state|
     value, code = state.chomp.split('|')
     Region.create!(:code => code, :value => value, :active => true)
