@@ -1,11 +1,9 @@
 class Location < ActiveRecord::Base
-  has_many    :involvements
-  has_many    :people, :through => :involvements
-  has_many    :reports
-
+#  has_many    :involvements
+  has_many  :person_locations
+  has_many  :reports
 
   named_scope :recent, :order => 'updated_at DESC', :limit => 10
-
 
   def street
     return "#{self.street_number} #{self.street_name}"

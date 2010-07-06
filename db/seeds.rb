@@ -2,11 +2,11 @@
 
 # Load STATE codes
 puts '... NCIC State data...'
-State.delete_all
+Region.delete_all
 open(File.join(Rails.root, 'db', 'seeds', 'NCICStateCodes.txt')) do |states|
   states.read.each_line do |state|
     value, code = state.chomp.split('|')
-    State.create!(:code => code, :value => value, :active => true)
+    Region.create!(:code => code, :value => value, :active => true)
   end
 end
 

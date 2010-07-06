@@ -1,18 +1,17 @@
 class Person < ActiveRecord::Base
   belongs_to  :person_master
-  has_many    :aliases, :through => :person_master
+#  has_many    :aliases #, :through => :person_master
 
   has_many    :person_involvements, :foreign_key => 'involved_id'
   has_many    :reports, :through => :person_involvements
 
-  has_many    :addresses
-  has_many    :locations, :through => :addresses
+  has_many    :person_locations
+  has_many    :locations, :through => :person_locations
 
   belongs_to  :race
   belongs_to  :gender
   belongs_to  :hair_color
   belongs_to  :eye_color
-  belongs_to  :state
 
   default_scope :order => 'updated_at DESC'
 

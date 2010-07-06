@@ -4,7 +4,7 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Property, Location, Vehicle, Person, Address, Report, CallForService, Involvement].each(&:delete_all)
+    [Property, Location, Vehicle, Person, PersonLocation, Report, CallForService, Involvement].each(&:delete_all)
 
     property_types = PropertyType.active.collect{|p| p.id}
     
@@ -33,7 +33,7 @@ namespace :db do
       vehicle.vehicle_color_id    = vehicle_colors
       vehicle.year        = 1901..Time.now.year + 1
       vehicle.reg_number  = Faker.numerify('###-###')
-      vehicle.reg_state   = Faker::Address.us_state_abbr
+      vehicle.reg_state   = Faker::PersonLocation.us_state_abbr
       vehicle.description = Populator.words(5)
 
       vehicle.active      = ['T','T','T','T','T','T','F']
@@ -46,7 +46,7 @@ namespace :db do
     haircolors  = HairColor.all.collect{|c| c.id}
     races       = Race.all.collect{|r| r.id}
     genders     = Gender.all.collect{|g| g.id}
-    states      = State.all.collect{|s| s.id}
+    states      = Region.all.collect{|s| s.id}
 
     PersonMaster.populate 100 do |personmaster|
       # Create attributes that are stable between 'aliases'
@@ -82,7 +82,7 @@ namespace :db do
     people    = Person.all.collect{|l| l.id}
     locations = Location.all.collect{|l| l.id}
 
-    Address.populate 2000 do |address|
+    PersonLocation.populate 2000 do |address|
       address.person_id   = people
       address.location_id = locations
       address.role_id     = roles

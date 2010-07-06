@@ -6,7 +6,7 @@
   <%= f.label :vin, 'ID' %>
   <%= f.text_field :vin, :title => 'VIN', :size => 20 %>
   <%= f.text_field :reg_number, :title => 'Reg. Number', :size => 20 %>
-  <%= f.collection_select :reg_state, State.active, :code, :value, {:prompt => 'Reg. State'} %>
+  <%= f.collection_select :reg_state, Region.active, :code, :value, {:prompt => 'Reg. State'} %>
 
 
   <div class="clearfix">&nbsp;</div>

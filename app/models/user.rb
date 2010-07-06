@@ -1,6 +1,13 @@
 class User < ActiveRecord::Base
   acts_as_authentic
 
+  attr_protected :admin
+
+	validates_length_of	:login, :in => 1..20
+	validates_length_of :first_name,  :in => 1..40
+	validates_length_of :last_name,   :in => 1..40
+
+
   named_scope :active, :conditions => {:active => true}
   named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
 

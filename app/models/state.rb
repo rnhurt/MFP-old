@@ -1,2 +1,0 @@
-class State < Code
-end
