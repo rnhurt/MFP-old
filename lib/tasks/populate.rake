@@ -113,9 +113,11 @@ namespace :db do
     end
     
     puts 'Building Report records...'
-    offenses  = Offense.active.collect{|l| l.id}
-    locations = Location.all.collect{|l| l.id}
-    people    = Person.recent.collect{|l| l.id}
+    offenses      = Offense.active.collect{|l| l.id}
+    locations     = Location.all.collect{|l| l.id}
+    person_roles  = Role.person.collect{|l| l.id}
+    officer_roles = Role.officer.collect{|l| l.id}
+    statuses      = Status.active.collect{|l| l.id}
     Report.populate 200 do |report|
       report.number       = Faker.numerify('######-######')
       report.offense_id   = offenses
@@ -128,47 +130,52 @@ namespace :db do
 
       report.created_at = report.cleared_at + 5.hours
       report.updated_at = report.created_at
+
+      # Add people to the report
+      current_id = 0
+      people = Person.recent.collect{|l| l.id}
+      PersonInvolvement.populate 1..10 do |pi|
+        pi.report_id    = report.id
+        people.shuffle!                       # Randomize the list of People ...
+        pi.involved_id  = people.delete_at(0) # ...and remove one item from the list so we don't reuse it
+        pi.role_id      = person_roles
+        current_id      = pi.id
+      end
+
+      # Add officers to the report
+      officers = Officer.all.collect{|l| l.id}
+      OfficerInvolvement.populate 1..3 do |oi|
+        current_id += current_id
+        oi.id = current_id
+        oi.report_id    = report.id
+        officers.shuffle!                       # Randomize the list of Officers...
+        oi.involved_id  = officers.delete_at(0) # ...and remove one item from the list so we don't reuse it
+        oi.role_id      = officer_roles
+      end
+
+      # Add vehicles to the report
+      vehicles = Vehicle.all.collect{|l| l.id}
+      VehicleInvolvement.populate 1..5 do |vi|
+        current_id += current_id
+        vi.id = current_id
+        vi.report_id    = report.id
+        vehicles.shuffle!                       # Randomize the list of Vehicles...
+        vi.involved_id  = vehicles.delete_at(0) # ...and remove one item from the list so we don't reuse it
+        vi.role_id      = statuses
+      end
     end
 
-    puts 'Building CFS records...'
-    CallForService.populate 200 do |cfs|
-      cfs.offense_id    = offenses
-      cfs.cleared_at    = 5.years.ago..5.days.ago
-      cfs.arrived_at    = cfs.cleared_at - Faker.numerify('##').to_i.minutes
-      cfs.dispatched_at = cfs.arrived_at - Faker.numerify('#').to_i.hours
-      cfs.narrative     = Populator.paragraphs(3)
-      cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
-
-      cfs.created_at = cfs.cleared_at + 5.hours
-      cfs.updated_at = cfs.created_at
-    end
-    
-    puts 'Building PersonInvolvement records...'
-    reports = Report.all.collect{|l| l.id}
-    people  = Person.recent.collect{|l| l.id}
-    roles  = Role.person.collect{|l| l.id}
-    PersonInvolvement.populate 200 do |pi|
-      pi.report_id    = reports
-      pi.involved_id  = people
-      pi.role_id      = roles
-    end
-
-    puts 'Building OfficerInvolvement records...'
-    officers  = Officer.active.collect{|l| l.id}
-    roles     = Role.officer.active.collect{|l| l.id}
-    OfficerInvolvement.populate 200 do |oi|
-      oi.report_id    = reports
-      oi.involved_id  = officers
-      oi.role_id      = roles
-    end
-
-    puts 'Building VehicleInvolvement records...'
-    vehicles  = Vehicle.all.collect{|l| l.id}
-    statuses  = Status.active.collect{|l| l.id}
-    VehicleInvolvement.populate 200 do |vi|
-      vi.report_id    = reports
-      vi.involved_id  = vehicles
-      vi.role_id      = statuses
-    end
+    #    puts 'Building CFS records...'
+    #    CallForService.populate 200 do |cfs|
+    #      cfs.offense_id    = offenses
+    #      cfs.cleared_at    = 5.years.ago..5.days.ago
+    #      cfs.arrived_at    = cfs.cleared_at - Faker.numerify('##').to_i.minutes
+    #      cfs.dispatched_at = cfs.arrived_at - Faker.numerify('#').to_i.hours
+    #      cfs.narrative     = Populator.paragraphs(3)
+    #      cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
+    #
+    #      cfs.created_at = cfs.cleared_at + 5.hours
+    #      cfs.updated_at = cfs.created_at
+    #    end
   end
 end
