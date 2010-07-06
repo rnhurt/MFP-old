@@ -19,4 +19,15 @@ class UserTest < ActiveSupport::TestCase
   should      allow_value("asdf@asdf.com").for(:email)
 
   should_not  allow_mass_assignment_of(:admin)
+
+  context 'A user' do
+    setup do
+      @user = Factory(:user, :first_name => 'John', :last_name => 'Doe')
+    end
+
+    should 'return its full name' do
+      assert_equal 'John Doe', @user.full_name
+    end
+  end
+
 end

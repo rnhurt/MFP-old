@@ -1,8 +1,7 @@
 require 'test_helper'
 
 class PropertyInvolvementTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+  should belong_to(:report)
+  should belong_to(:property)
+  should belong_to(:role)
 end

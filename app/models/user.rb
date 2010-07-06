@@ -7,12 +7,16 @@ class User < ActiveRecord::Base
 	validates_length_of :first_name,  :in => 1..40
 	validates_length_of :last_name,   :in => 1..40
 
-
   named_scope :active, :conditions => {:active => true}
   named_scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0 "} }
 
-  ROLES = %w[admin chief officer secretary]
+  # Return the users full name
+  def full_name
+    return "#{first_name} #{last_name}"
+  end
 
+  # Define different roles for each user to play.  This is mainly used for authentication purposes.
+  ROLES = %w[admin chief officer secretary]
   def roles=(roles)
     debugger
     #    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum

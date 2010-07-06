@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class OfficerTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+  should have_many(:officer_involvements)
+  should have_many(:reports).through(:officer_involvements)
 end

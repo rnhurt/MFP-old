@@ -4,7 +4,29 @@ namespace :db do
     require 'populator'
     require 'faker'
     
-    [Property, Location, Vehicle, Person, PersonLocation, Report, CallForService, Involvement].each(&:delete_all)
+    [Property, Location, Vehicle, Person, Officer, PersonLocation,
+      Report, CallForService,
+      PersonInvolvement, OfficerInvolvement].each(&:delete_all)
+
+    puts 'Building Officer records...'
+    property_types = PropertyType.active.collect{|p| p.id}
+    Officer.populate 10 do |officer|
+      officer.first_name  = Faker::Name.first_name
+      officer.last_name   = Faker::Name.last_name
+      officer.badge_number= 'B101-' + officer.last_name
+      officer.login       = Faker::Internet.user_name
+      officer.email       = Faker::Internet.email
+      officer.login_count = 10..1000
+      officer.failed_login_count = 0..5
+      officer.active      = [true, true, true, true, true, false]
+
+      salt = Authlogic::Random.hex_token
+      officer.password_salt       = salt
+      officer.crypted_password    = Authlogic::CryptoProviders::Sha512.encrypt(officer.last_name + salt)
+      officer.persistence_token   = Authlogic::Random.friendly_token
+      officer.single_access_token = Authlogic::Random.friendly_token
+      officer.perishable_token    = Authlogic::Random.friendly_token
+    end
 
     puts 'Building Property records...'
     property_types = PropertyType.active.collect{|p| p.id}
@@ -79,7 +101,6 @@ namespace :db do
       end
     end
 
-
     puts 'Building PersonLocation records...'
     roles     = Role.address.active.collect{|l| l.id}
     people    = Person.all.collect{|l| l.id}
@@ -90,9 +111,11 @@ namespace :db do
       address.role_id     = roles
       address.phone_number= Faker.numerify('##########')
     end
-
-    puts 'Building Offenses records...'
-    offenses = Offense.active.collect{|l| l.id}
+    
+    puts 'Building Report records...'
+    offenses  = Offense.active.collect{|l| l.id}
+    locations = Location.all.collect{|l| l.id}
+    people    = Person.recent.collect{|l| l.id}
     Report.populate 200 do |report|
       report.number       = Faker.numerify('######-######')
       report.offense_id   = offenses
@@ -102,8 +125,6 @@ namespace :db do
       report.arrived_at     = report.cleared_at - Faker.numerify('##').to_i.minutes
       report.dispatched_at  = report.arrived_at - Faker.numerify('#').to_i.hours
       report.narrative      = Populator.paragraphs(3)
-
-      #      report.persons <<
 
       report.created_at = report.cleared_at + 5.hours
       report.updated_at = report.created_at
@@ -118,15 +139,22 @@ namespace :db do
       cfs.narrative     = Populator.paragraphs(3)
       cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
 
-      #      cfs.persons <<
-
       cfs.created_at = cfs.cleared_at + 5.hours
       cfs.updated_at = cfs.created_at
     end
     
+    puts 'Building PersonInvolvement records...'
+    reports = Report.all.collect{|l| l.id}
+    people  = Person.recent.collect{|l| l.id}
+    roles  = Role.person.collect{|l| l.id}
+    PersonInvolvement.populate 200 do |pi|
+      pi.report_id    = reports
+      pi.involved_id  = people
+      pi.role_id      = roles
+    end
+
     puts 'Building OfficerInvolvement records...'
     officers  = Officer.active.collect{|l| l.id}
-    reports   = Report.all.collect{|l| l.id}
     roles     = Role.officer.active.collect{|l| l.id}
     OfficerInvolvement.populate 200 do |oi|
       oi.report_id    = reports
