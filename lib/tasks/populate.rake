@@ -165,17 +165,50 @@ namespace :db do
       end
     end
 
-    #    puts 'Building CFS records...'
-    #    CallForService.populate 200 do |cfs|
-    #      cfs.offense_id    = offenses
-    #      cfs.cleared_at    = 5.years.ago..5.days.ago
-    #      cfs.arrived_at    = cfs.cleared_at - Faker.numerify('##').to_i.minutes
-    #      cfs.dispatched_at = cfs.arrived_at - Faker.numerify('#').to_i.hours
-    #      cfs.narrative     = Populator.paragraphs(3)
-    #      cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
-    #
-    #      cfs.created_at = cfs.cleared_at + 5.hours
-    #      cfs.updated_at = cfs.created_at
-    #    end
+    puts 'Building CFS records...'
+    CallForService.populate 200 do |cfs|
+      cfs.offense_id    = offenses
+      cfs.cleared_at    = 5.years.ago..5.days.ago
+      cfs.arrived_at    = cfs.cleared_at - Faker.numerify('##').to_i.minutes
+      cfs.dispatched_at = cfs.arrived_at - Faker.numerify('#').to_i.hours
+      cfs.narrative     = Populator.paragraphs(3)
+      cfs.number        = Faker.numerify('C-##-###-' + cfs.dispatched_at.year.to_s)
+
+      cfs.created_at = cfs.cleared_at + 5.hours
+      cfs.updated_at = cfs.created_at
+
+      # Add people to the CFS
+      current_id = 0
+      people = Person.recent.collect{|l| l.id}
+      PersonInvolvement.populate 1..10 do |pi|
+        pi.report_id    = cfs.id
+        people.shuffle!                       # Randomize the list of People ...
+        pi.involved_id  = people.delete_at(0) # ...and remove one item from the list so we don't reuse it
+        pi.role_id      = person_roles
+        current_id      = pi.id
+      end
+
+      # Add officers to the CFS
+      officers = Officer.all.collect{|l| l.id}
+      OfficerInvolvement.populate 1..3 do |oi|
+        current_id += current_id
+        oi.id = current_id
+        oi.report_id    = cfs.id
+        officers.shuffle!                       # Randomize the list of Officers...
+        oi.involved_id  = officers.delete_at(0) # ...and remove one item from the list so we don't reuse it
+        oi.role_id      = officer_roles
+      end
+
+      #      # Add vehicles to the CFS
+      #      vehicles = Vehicle.all.collect{|l| l.id}
+      #      VehicleInvolvement.populate 1..5 do |vi|
+      #        current_id += current_id
+      #        vi.id = current_id
+      #        vi.report_id    = cfs.id
+      #        vehicles.shuffle!                       # Randomize the list of Vehicles...
+      #        vi.involved_id  = vehicles.delete_at(0) # ...and remove one item from the list so we don't reuse it
+      #        vi.role_id      = statuses
+      #      end
+    end
   end
 end

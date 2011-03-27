@@ -1,10 +1,13 @@
 = M.ain F.orce P.atrol
+== UPDATE - 3/27/2011
+This project has moved to http://github.com/rnhurt/mfp.  This repository will eventually be removed from Github.
+
 == Introduction
 
 == Helpful links
-* <b>Repository:</b> http://github.com/rnhurt/mfp
+* <b>Repository:</b> http://github.com/rnhurt/mfp-old
 * <b>Live example:</b> n/a
-* <b>Bugs / feature suggestions:</b> http://github.com/rnhurt/mfp/issues
+* <b>Bugs / feature suggestions:</b> http://github.com/rnhurt/mfp-old/issues
 * <b>Professional support:</b> http://KangarooBox.com/dingo
 
 == Requirements
